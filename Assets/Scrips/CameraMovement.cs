@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     private Vector3 Position;
+    private Vector3 Velocity;
     [Header("Camera Settings")]
     public float Speed;
     
@@ -17,20 +18,22 @@ public class CameraMovement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W))
         {
-            Position.y -= Speed / 100;
+            Position.y += Speed * Time.deltaTime * 5;
         }
         if (Input.GetKey(KeyCode.S))
         {
-            Position.y += Speed / 10;
+            Position.y -= Speed * Time.deltaTime * 5;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            Position.x -= Speed / 10;
+            Position.x -= Speed * Time.deltaTime * 5;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            Position.x += Speed / 10;
+            Position.x += Speed * Time.deltaTime * 5;
         }
+        Position += Velocity * Time.deltaTime;
+        Velocity -=  * Time.deltaTime
         this.transform.position = Position;
     }
 }
