@@ -45,9 +45,10 @@ GameObject:
   - component: {fileID: 5274308022469905860}
   - component: {fileID: 2107891575234553669}
   - component: {fileID: 3450943335472351653}
+  - component: {fileID: -3573601084954550869}
   m_Layer: 0
   m_Name: PrefabFighter
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -163,6 +164,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-3573601084954550869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003966404252564747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36d5752ce0dd98f47b2a0c1f28e38d09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  awareness: 10
+  minClearance: 5
+  bullet: {fileID: 8931437159775477925, guid: 95ac5c3a528e70f428aa4f8e6aca794e, type: 3}
 --- !u!1 &2549117897694417736
 GameObject:
   m_ObjectHideFlags: 0
