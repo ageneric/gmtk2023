@@ -12,7 +12,11 @@ public class Fighter : MonoBehaviour
     public float maxHealth = 1;
     public float speed = 1;
     public float stamina = 1;
+
     public float block = 0;
+
+    public string username = "";
+    public string hack = "";
 
     public SpriteRenderer spriteRenderer;
 
@@ -31,7 +35,7 @@ public class Fighter : MonoBehaviour
     public void Attack(GameObject target)
     {
         // target: Fighter prefab
-
+        target.GetComponent<Fighter>().TakeDamage(1);
     }
 
     public void TakeDamage(float damage)

@@ -1,13 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 public class FighterLabel : MonoBehaviour
 {
-    public Fighter fighter;
-
-    public Text labelText;
+    private Fighter fighter;
+    public TextMesh labelText;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +18,9 @@ public class FighterLabel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        labelText.text = fighter.health.ToString() + "/" + fighter.maxHealth.ToString();
+        string NewLine = System.Environment.NewLine;
+        labelText.text = fighter.health.ToString() + "/" + fighter.maxHealth.ToString() + "HP" + NewLine
+            + fighter.username + NewLine
+            + "Hack " + fighter.hack;
     }
 }
