@@ -6,11 +6,13 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject prefabFighter;
     public BoxCollider2D spawnArea;
+    public GameObject prefabFighter;
+    public Leaderboard leaderboard;
     public int spawnCount = 1;
 
     private float width;
+
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +30,7 @@ public class Spawner : MonoBehaviour
     public void CreateFighterGroup()
     {
         bool[] fighterIsHacker = new bool[spawnCount];
-        
+        fighterIsHacker[Random.Range(0, spawnCount - 1)] = true;
 
         for (int i=0; i<spawnCount; i++)
         {
