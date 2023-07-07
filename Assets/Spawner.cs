@@ -49,5 +49,7 @@ public class Spawner : MonoBehaviour
         {
             newFighter.hack = "defaultHack";
         }
+
+        leaderboard.RegisterFighter(newFighter);
     }
 }
