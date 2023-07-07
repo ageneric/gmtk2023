@@ -35,16 +35,21 @@ public class Fighter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (active)
         {
-            Vector2 cubeRay = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D cubeHit = Physics2D.Raycast(cubeRay, Vector2.zero);
-            if (cubeHit) Ban();
-        }
+            if (Input.GetMouseButtonDown(0))
+            {
+                Vector2 cubeRay = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                RaycastHit2D cubeHit = Physics2D.Raycast(cubeRay, Vector2.zero);
+                if (cubeHit) Ban();
+            }
 
-        if (health < maxHealth)
-        {
-            health = Mathf.Min(health + regeneration * Time.deltaTime, maxHealth);
+            if (health < maxHealth)
+            {
+                health = Mathf.Min(health + regeneration * Time.deltaTime, maxHealth);
+            }
+
+            timeSurvived += Time.deltaTime;
         }
     }
 
