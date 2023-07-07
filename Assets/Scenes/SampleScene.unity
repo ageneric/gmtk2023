@@ -945,7 +945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 626b8f7a31d0f684391875d0f4177a43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 1
+  Speed: 5
 --- !u!1 &879437767
 GameObject:
   m_ObjectHideFlags: 0
@@ -2063,6 +2063,10 @@ PrefabInstance:
     - target: {fileID: 2003966404252564747, guid: bbbcd37d7389b524fbddeaa52c0550f0, type: 3}
       propertyPath: m_Name
       value: Fighter
+      objectReference: {fileID: 0}
+    - target: {fileID: 3450943335472351653, guid: bbbcd37d7389b524fbddeaa52c0550f0, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7279628847326705289, guid: bbbcd37d7389b524fbddeaa52c0550f0, type: 3}
       propertyPath: m_RootOrder
