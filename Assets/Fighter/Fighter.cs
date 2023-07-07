@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Fighter : MonoBehaviour
 {
-    [Header("Fighter statistics and primary actions.", order = 1)]
-    [Header("Does not handle movement.", order = 2)]
+    [Header("Handles stats and primary actions", order = 1)]
+    [Header("Not including movement or AI.", order = 2)]
 
     public float health = 1;
     public float maxHealth = 1;
