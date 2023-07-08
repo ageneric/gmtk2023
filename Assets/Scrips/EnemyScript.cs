@@ -9,6 +9,8 @@ public class EnemyScript : MonoBehaviour
     public Transform target;
     Vector2 chosenPos;
     Vector2 chosenPosDelta;
+    Vector2 oldvel;
+    List<Vector2> blacklistedDirns = new List<Vector2>();
     public Vector3 startPos;
     public int command = 0;
     public int awareness = 10;
@@ -55,7 +57,7 @@ public class EnemyScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         
         if(!f.active)
@@ -88,9 +90,10 @@ public class EnemyScript : MonoBehaviour
                 foreach (Vector2 v in directions)
                 {
                     RaycastHit2D hit = Physics2D.Raycast(transform.position, v, visionRange);
-                    if (hit.collider == null)
+                    if (hit.collider == null && !speedSelect)
                     {
-                        
+                        vel = v;
+                        speedSelect = true;
                     }
                     else
                     {
@@ -119,13 +122,14 @@ public class EnemyScript : MonoBehaviour
                                 speedSelect = true;
                             }
                         }
-                        else if (hit.distance < 0.5 * minClearance && !f.hacks.Contains("NOCLP"))
+                        else
                         {
-                            //vel += -v;
+                            blacklistedDirns.Add(v);
                         }
                     }
                 }
                 rb.velocity = vel.normalized * (f.hacks.Contains("SPEED") ? f.speed * speedMultiplier : f.speed);
+                oldvel = vel;
                 break;
             case 2:
                 if(!isWaiting)
