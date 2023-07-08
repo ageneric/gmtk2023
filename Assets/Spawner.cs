@@ -16,7 +16,10 @@ public class Spawner : MonoBehaviour
     public GameObject spawnPointHolder;
     string usernames = "snap;get;melodic;opening;tshirt;supporter;loan;simply;enchant;scold;axel;came;convolvulus;and;argent;illiterate;power;landscape;grand;dug;translate;shrug;everyday;sport;obey;maker;miniature;mussels;perpetual;told;wool;sarong;petticoat;feliz;swim;achoo;reserved;neither;serpentine;culottes;nucleus;level;coal;seagull;sales;evening;insidious;pelt;key;disgusted";
     List<string> usernamelist;
+    List<string> usernamesInPlay = new List<string>();
+    List<string> hackerUserNames = new List<string>();
     public string[] possiblehacks;
+    public List<Report> reports;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +37,8 @@ public class Spawner : MonoBehaviour
 
     public void CreateFighterGroup()
     {
+        reports = new List<Report>();
+
         bool[] fighterIsHacker = new bool[spawnCount];
         //TEMP: hacks disabled
         fighterIsHacker[Random.Range(0, spawnCount - 1)] = true;
@@ -45,7 +50,35 @@ public class Spawner : MonoBehaviour
         {
             CreateFighter(fighterIsHacker[i]);
         }
+        for(int i=0;i<UnityEngine.Random.Range(hackerUserNames.Count*2,hackerUserNames.Count*3+2);i++)
+        {
+            Report r = new Report();
+            if(i<hackerUserNames.Count)
+            {
+                r.accusee = hackerUserNames[i];
+            }
+            else
+            {
+                r.accusee = usernamesInPlay[UnityEngine.Random.Range(0, usernamesInPlay.Count)];
+            }
+            string a;
+            do
+            {
+                a = usernamesInPlay[UnityEngine.Random.Range(0, usernamesInPlay.Count)];
+            } while (a == r.accusee);
+            r.accusor = a;
+            reports.Add(r);
+        }
+
+        Shuffle.shuffle(reports);
+
+        foreach(Report r in reports)
+        {
+            Debug.Log(r.accusor + " reported " + r.accusee + ": " + r.flavour);
+        }
     }
+
+    
 
     public void CreateFighter(bool fighterIsHacker)
     {
@@ -60,6 +93,7 @@ public class Spawner : MonoBehaviour
         if (Random.Range(0, 3) > 0) {
             newFighter.username += Random.Range(0, 99).ToString("00");
         }
+        usernamesInPlay.Add(newFighter.username);
         usernamelist.RemoveAt(usernameindex);
         gameObjectFighter.name = "Fighter " + newFighter.username + "_" + Random.Range(0, 9999).ToString("0000");
 
@@ -67,6 +101,7 @@ public class Spawner : MonoBehaviour
         {
             string newhack = possiblehacks[UnityEngine.Random.Range(0, possiblehacks.Length)];
             newFighter.hacks.Add(newhack);
+            hackerUserNames.Add(newFighter.username);
         }
 
         if(newFighter.hacks.Contains("NOCLP"))
@@ -77,3 +112,34 @@ public class Spawner : MonoBehaviour
         leaderboard.RegisterFighter(newFighter);
     }
 }
+
+public class Report
+{
+    public string accusor;
+    public string accusee;
+    public string flavour;
+    string[] possibleFlavours = { "HAXHAXHAXHAXHAXHAXHAX", "I hope that !*£&$(£^& $£&&!*$&_ will &£*£()$%&^ @}:{}@~@ until the day they &$&%^£(!}:}{}{@!!!", "THIS PLAYER IS CHEATING I CAN FEEL IT IN MY BONES >:(", "(this report has been redacted, as it violates community guidelines)", "This player is cheating harder than my ex cheated on me...", "Help me Banhammer - you're my only hope..." };
+
+    public Report()
+    {
+        flavour = possibleFlavours[UnityEngine.Random.Range(0, possibleFlavours.Length)];
+    }
+}
+
+public static class Shuffle
+{
+    public static void shuffle<T>(this IList<T> list)
+    {
+        int n = list.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = UnityEngine.Random.Range(0, n + 1);
+            T value = list[k];
+            list[k] = list[n];
+            list[n] = value;
+        }
+    }
+}
+
+
