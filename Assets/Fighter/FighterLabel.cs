@@ -8,6 +8,7 @@ public class FighterLabel : MonoBehaviour
 {
     private Fighter fighter;
     public TextMesh labelText;
+    public Transform healthBarFill;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,6 @@ public class FighterLabel : MonoBehaviour
         }
 
         float healthBarScale = Mathf.Clamp01(fighter.health / fighter.maxHealth);
-        // TODO: Create a health bar. Scale the fill object by health.
+        healthBarFill.localScale = new Vector3(healthBarScale, 0.0625f, 1f);
     }
 }

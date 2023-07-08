@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0a317e6ece40376469ddbef93f04c2b7
+guid: 57720bb25b70dfd48b8dbb3942c68cc6
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Kenney Thick
+  - Kenney Bold
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
