@@ -43,12 +43,16 @@ public class CameraMovement : MonoBehaviour {
         this.transform.position = Position;
     }
 
-    public void MoveCameraTo(Vector3 newPosition)
+    public void MoveCameraTo(Vector2 newPosition)
     {
+        Vector2 Position2D = Position;
+        float newSpeed = Mathf.Min(Speed, (newPosition - Position2D).magnitude);
+        Vector2 Velocity2D = (newPosition - Position2D).normalized * newSpeed;
+
+        Position.x = newPosition.x;
+        Position.y = newPosition.y;
         Position.z = -10;
-        float newSpeed = Mathf.Min(Speed, (newPosition - Position).magnitude);
-        Velocity = (newPosition - Position).normalized * newSpeed;
-        Position = newPosition;
-        this.transform.position = Position - Velocity;
+        Velocity = Velocity2D;  // Uses the default z-velocity of 0.
+        this.transform.position = Position;
     }
 }

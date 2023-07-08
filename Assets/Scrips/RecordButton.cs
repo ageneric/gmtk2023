@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class RecordButton : MonoBehaviour
 {
-    public Vector3 eventLocation;
-    public CameraMovement cameraMovement;
+    public Vector2 eventLocation;
+    private CameraMovement cameraMovement;
+
+    public void Start()
+    {
+        cameraMovement = FindObjectOfType<Camera>().GetComponent<CameraMovement>();
+    }
 
     public void OnClick()
     {

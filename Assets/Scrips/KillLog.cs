@@ -12,14 +12,14 @@ public class KillLog : MonoBehaviour
 
     List<Vector2> killLocations = new List<Vector2>();
 
-    public void addKill(Fighter killer, Fighter killee)
+    public void addKill(Fighter killer, Fighter killee, Vector2 killLocation)
     {
-        killLocations.Add(new Vector2());
+        killLocations.Add(killLocation);
 
         var obj = Instantiate(killText);
         obj.transform.SetParent(killLog);
 
-        obj.GetComponent<RecordButton>().eventLocation = new Vector3(0, 0, -10);
+        obj.GetComponent<RecordButton>().eventLocation = killLocation;
         // TODO: Need vec3 to be passed as an argument to addKill
 
         TMP_Text[] textFields = obj.GetComponentsInChildren<TMP_Text>();

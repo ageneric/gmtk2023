@@ -23,6 +23,7 @@ public class Fighter : MonoBehaviour
     public bool active = true;
     public bool banned = false;
 
+    public GameObject visibleProfile;
     public SpriteRenderer spriteRenderer;
     EnemyScript enemy;
 
@@ -41,22 +42,20 @@ public class Fighter : MonoBehaviour
     {
         if (active)
         {
-            if(health <= 0)
+            if (Input.GetMouseButtonDown(0) && BanHammer.userTool == BanHammer.Tool.BanHammer)
             {
-                active = false;
-                gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
-                GetComponentInChildren<MeshRenderer>().enabled = false;
-                StartCoroutine(respawn());
-            }
-            if (Input.GetMouseButtonDown(0))
-            {
-                Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition));
                 Vector2 clickPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
-                GameObject g = Physics2D.OverlapPoint(clickPos).gameObject;
-                if(g.tag == "Player")
+                Collider2D collider = Physics2D.OverlapPoint(clickPos);
+                if (collider != null && collider.gameObject.tag == "Player" && collider.name == name)
                 {
-                    g.GetComponent<Fighter>().Ban();
+                    collider.gameObject.GetComponent<Fighter>().Ban();
                 }
+            }
+
+            // Death
+            if (health <= 0)
+            {
+                Knockout();
             }
 
             if (health < maxHealth)
@@ -88,21 +87,26 @@ public class Fighter : MonoBehaviour
     {
         // Ban this fighter.
         banned = true;
-        active = false;
+        Knockout();
+    }
 
-        // TEMPORARY: banning simply hides the sprite.
-        // TODO: contain all the living fighter logic under a child GameObject
-        //       then disable it when the fighter is banned.
-        gameObject.GetComponentInChildren<SpriteRenderer>().gameObject.SetActive(false);
+    public void Knockout()
+    {
+        // Kill this fighter and start the respawn timer.
+        active = false;
+        StartCoroutine(respawn());
     }
 
     IEnumerator respawn()
     {
-        yield return new WaitForSeconds(3);
+        spriteRenderer.color = new Color(1, 0f, 0f, 0.5f);
+        yield return new WaitForSeconds(0.25f);
+        visibleProfile.SetActive(false);
+        spriteRenderer.color = new Color(1, 1, 1);
+        yield return new WaitForSeconds(1.75f);
         transform.position = enemy.startPos;
         enemy.command = 0;
-        gameObject.GetComponentInChildren<SpriteRenderer>().enabled = true;
-        GetComponentInChildren<MeshRenderer>().enabled = true;
+        visibleProfile.SetActive(true);
         health = maxHealth;
         active = true;
     }

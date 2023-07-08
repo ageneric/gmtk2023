@@ -30,7 +30,7 @@ public class BulletScript : MonoBehaviour
             collision.gameObject.GetComponent<Fighter>().TakeDamage(34*(pf.hacks.Contains("DMG") ? 2 : 1)*(f.hacks.Contains("IMMUN") ? 0 : 1));
             if(f.health <= 0)
             {
-                kl.addKill(pf, f);
+                kl.addKill(pf, f, f.gameObject.transform.position);
                 parent.command = 0;
                 parent.isLooking = false;
                 parent.isWaiting = false;

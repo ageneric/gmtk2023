@@ -50,9 +50,14 @@ public class Spawner : MonoBehaviour
         Vector2 position = spawnPoints[i].position;
         GameObject gameObjectFighter = Instantiate(prefabFighter, position, Quaternion.identity);
         Fighter newFighter = gameObjectFighter.GetComponent<Fighter>();
-        int usernameindex = UnityEngine.Random.Range(0, usernamelist.Count);
-        newFighter.username = usernamelist[usernameindex] + UnityEngine.Random.Range(0,100).ToString("00");
+        int usernameindex = Random.Range(0, usernamelist.Count);
+        newFighter.username = usernamelist[usernameindex];
+        if (Random.Range(0, 3) > 0) {
+            newFighter.username += Random.Range(0, 99).ToString("00");
+        }
         usernamelist.RemoveAt(usernameindex);
+        gameObjectFighter.name = "Fighter " + newFighter.username + "_" + Random.Range(0, 9999).ToString("0000");
+
         if (fighterIsHacker)
         {
             //newFighter.hacks.Add(possiblehacks[UnityEngine.Random.Range(0,possiblehacks.Length)]);
