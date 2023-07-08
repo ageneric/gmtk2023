@@ -40,6 +40,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Foreground
+    uniqueID: 699928935
+    locked: 0
+  - name: High Indicator
+    uniqueID: 1658960211
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Low Indicator
+    uniqueID: 778223089
+    locked: 0
+  - name: Background
+    uniqueID: 3911924569
     locked: 0

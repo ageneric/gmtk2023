@@ -35,6 +35,9 @@ public class Spawner : MonoBehaviour
         bool[] fighterIsHacker = new bool[spawnCount];
         //TEMP: hacks disabled
         fighterIsHacker[Random.Range(0, spawnCount - 1)] = true;
+        fighterIsHacker[Random.Range(0, spawnCount - 1)] = true;
+        fighterIsHacker[Random.Range(0, spawnCount - 1)] = true;
+        fighterIsHacker[Random.Range(0, spawnCount - 1)] = true;
 
         for (int i=0; i<spawnCount; i++)
         {
@@ -60,8 +63,8 @@ public class Spawner : MonoBehaviour
 
         if (fighterIsHacker)
         {
-            //newFighter.hacks.Add(possiblehacks[UnityEngine.Random.Range(0,possiblehacks.Length)]);
-            newFighter.hacks.Add("IMMUN");
+            newFighter.hacks.Add(possiblehacks[UnityEngine.Random.Range(0,possiblehacks.Length)]);
+            //newFighter.hacks.Add("IMMUN");
         }
 
         if(newFighter.hacks.Contains("NOCLP"))

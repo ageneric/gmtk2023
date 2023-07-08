@@ -42,7 +42,7 @@ public class Fighter : MonoBehaviour
     {
         if (active)
         {
-            if (Input.GetMouseButtonDown(0) && BanHammer.userTool == BanHammer.Tool.BanHammer)
+            if (Input.GetMouseButtonDown(0) && ToolSelect.userTool == ToolSelect.Tool.BanHammer)
             {
                 Vector2 clickPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
                 Collider2D collider = Physics2D.OverlapPoint(clickPos);
@@ -103,11 +103,15 @@ public class Fighter : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         visibleProfile.SetActive(false);
         spriteRenderer.color = new Color(1, 1, 1);
-        yield return new WaitForSeconds(1.75f);
-        transform.position = enemy.startPos;
-        enemy.command = 0;
-        visibleProfile.SetActive(true);
-        health = maxHealth;
-        active = true;
+
+        if (!banned)
+        {
+            yield return new WaitForSeconds(1.75f);
+            transform.position = enemy.startPos;
+            enemy.command = 0;
+            visibleProfile.SetActive(true);
+            health = maxHealth;
+            active = true;
+        }
     }
 }

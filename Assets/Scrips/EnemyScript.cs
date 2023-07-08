@@ -80,38 +80,45 @@ public class EnemyScript : MonoBehaviour
                 
                 foreach (Vector2 v in directions)
                 {
-                    RaycastHit2D hit = Physics2D.Raycast(transform.position, v);
-                    if((hit.collider.tag == "Player") && hit.distance < 100 && isLooking && hit.transform.GetComponent<Fighter>().active == true && hit.collider.gameObject != gameObject)
+                    RaycastHit2D hit = Physics2D.Raycast(transform.position, v, 5f);
+                    if (hit.collider == null)
                     {
-                        target = hit.transform;
-                        command = 2;
-                        isLooking = true;
-                        StartCoroutine(lookCooldown());
                         
-                        rb.velocity = Vector2.zero;
-                        break;
                     }
-                    if (distance.magnitude < 0.01f)
+                    else
                     {
-                        transform.position = new Vector3(chosenPos.x, chosenPos.y, 0);
-                        rb.velocity = Vector2.zero;
-
-                        break;
-                    }
-                    if (hit.distance > minClearance)
-                    {
-                        if(!speedSelect)
+                        if ((hit.collider.tag == "Player") && hit.distance < 100 && isLooking && hit.transform.GetComponent<Fighter>().active == true && hit.collider.gameObject != gameObject)
                         {
-                            vel = v;
-                            speedSelect = true;
+                            target = hit.transform;
+                            command = 2;
+                            isLooking = true;
+                            StartCoroutine(lookCooldown());
+
+                            rb.velocity = Vector2.zero;
+                            break;
+                        }
+                        if (distance.magnitude < 0.01f)
+                        {
+                            transform.position = new Vector3(chosenPos.x, chosenPos.y, 0);
+                            rb.velocity = Vector2.zero;
+
+                            break;
+                        }
+                        if (hit.distance > minClearance)
+                        {
+                            if (!speedSelect)
+                            {
+                                vel = v;
+                                speedSelect = true;
+                            }
+                        }
+                        else if (hit.distance < 0.5 * minClearance && !f.hacks.Contains("NOCLP"))
+                        {
+                            vel = -v;
                         }
                     }
-                    else if(hit.distance < 0.5*minClearance && !f.hacks.Contains("NOCLP"))
-                    {
-                        vel = -v;
-                    }
                 }
-                rb.velocity = vel.normalized * (f.hacks.Contains("SPEED") ? 2 : 1);
+                rb.velocity = vel.normalized * (f.hacks.Contains("SPEED") ? f.speed * 2 : f.speed);
                 break;
             case 2:
                 if(!isWaiting)

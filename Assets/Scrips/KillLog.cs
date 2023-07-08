@@ -20,7 +20,6 @@ public class KillLog : MonoBehaviour
         obj.transform.SetParent(killLog);
 
         obj.GetComponent<RecordButton>().eventLocation = killLocation;
-        // TODO: Need vec3 to be passed as an argument to addKill
 
         TMP_Text[] textFields = obj.GetComponentsInChildren<TMP_Text>();
         textFields[0].text = killer.username + " " + killWords[UnityEngine.Random.Range(0, killWords.Length)] + " " + killee.username;
