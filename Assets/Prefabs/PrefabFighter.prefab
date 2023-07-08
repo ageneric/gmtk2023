@@ -216,7 +216,7 @@ MonoBehaviour:
   command: 0
   awareness: 20
   minClearance: 2
-  visionRange: 50
+  visionRange: 200
   combatRange: 20
   maxBloom: 0.25
   speedMultiplier: 2

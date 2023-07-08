@@ -89,14 +89,17 @@ public class EnemyScript : MonoBehaviour
                 
                 foreach (Vector2 v in directions)
                 {
+                    if (blacklistedDirns.Contains(v))
+                    {
+                        continue;
+                    }
                     RaycastHit2D hit = Physics2D.Raycast(transform.position, v, visionRange);
                     if (hit.collider == null && !speedSelect)
                     {
                         vel = v;
                         speedSelect = true;
-                    }
-                    else
-                    {
+                    }else{
+                        
                         if ((hit.collider.tag == "Player") && hit.distance < combatRange && isLooking && hit.transform.GetComponent<Fighter>().active == true && hit.collider.gameObject != gameObject)
                         {
                             target = hit.transform;
@@ -127,6 +130,10 @@ public class EnemyScript : MonoBehaviour
                             blacklistedDirns.Add(v);
                         }
                     }
+                }
+                if(vel != oldvel)
+                {
+                    blacklistedDirns.Clear();
                 }
                 rb.velocity = vel.normalized * (f.hacks.Contains("SPEED") ? f.speed * speedMultiplier : f.speed);
                 oldvel = vel;
