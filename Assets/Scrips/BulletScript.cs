@@ -13,20 +13,21 @@ public class BulletScript : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Wall")
+        Fighter f = collision.gameObject.GetComponent<Fighter>();
+        Fighter pf = parent.GetComponent<Fighter>();
+        if (collision.collider.tag == "Wall" && !pf.hacks.Contains("XRAY"))
         {
             Destroy(gameObject);
         }
         if(collision.collider.tag == "Player")
         {
-            Fighter f = collision.gameObject.GetComponent<Fighter>();
-            Fighter pf = parent.GetComponent<Fighter>();
+            
             if (f == pf)
             {
                 Destroy(gameObject);
                 return;
             }
-            collision.gameObject.GetComponent<Fighter>().TakeDamage(34);
+            collision.gameObject.GetComponent<Fighter>().TakeDamage(34*(pf.hacks.Contains("DMG") ? 2 : 1));
             if(f.health <= 0)
             {
                 kl.addKill(pf, f);

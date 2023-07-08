@@ -26,6 +26,8 @@ public class Fighter : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     EnemyScript enemy;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -94,6 +96,7 @@ public class Fighter : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         transform.position = enemy.startPos;
+        enemy.command = 0;
         gameObject.GetComponentInChildren<SpriteRenderer>().enabled = true;
         GetComponentInChildren<MeshRenderer>().enabled = true;
         health = maxHealth;

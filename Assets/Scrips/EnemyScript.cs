@@ -6,7 +6,7 @@ public class EnemyScript : MonoBehaviour
 {
 
     List<Transform> waypoints = new List<Transform>();
-    Transform target;
+    public Transform target;
     Vector2 chosenPos;
     Vector2 chosenPosDelta;
     public Vector3 startPos;
@@ -57,9 +57,10 @@ public class EnemyScript : MonoBehaviour
         switch (command)
         {
             case 0:
-                if(!isLooking)
+                target = null;
+                if (!isLooking)
                 {
-                    target = null;
+                    
                     isLooking = true;
                     StartCoroutine(lookCooldown());
                     int chosenPoint = UnityEngine.Random.Range(0, waypoints.Count);
@@ -78,11 +79,11 @@ public class EnemyScript : MonoBehaviour
                 foreach (Vector2 v in directions)
                 {
                     RaycastHit2D hit = Physics2D.Raycast(transform.position, v);
-                    if(hit.collider.tag == "Player" && hit.distance < 100 && isLooking && hit.transform.GetComponent<Fighter>().active == true)
+                    if(hit.collider.tag == "Player" && hit.distance < 100 && isLooking && hit.transform.GetComponent<Fighter>().active == true && hit.collider.gameObject != gameObject)
                     {
                         target = hit.transform;
                         command = 2;
-                        isLooking = false;
+                        isLooking = true;
                         StartCoroutine(lookCooldown());
                         
                         rb.velocity = Vector2.zero;
@@ -124,10 +125,15 @@ public class EnemyScript : MonoBehaviour
                     chosenPos = target.position;
                     
                     Vector3 dirn = new Vector2(chosenPos.x - transform.position.x, chosenPos.y - transform.position.y).normalized;
-                    float theta = Mathf.Atan(dirn.y / dirn.x);
-                    theta += UnityEngine.Random.Range(-0.25f, 0.25f);
+                    float theta = Mathf.Atan2(dirn.y, dirn.x);
+                    float bloom = (f.hacks.Contains("AMBT") ? 0 : 0.25f);
+                    theta += UnityEngine.Random.Range(-bloom, bloom);
                     Vector2 bulletdirn = new Vector2(Mathf.Cos(theta), Mathf.Sin(theta));
                     var obj = Instantiate(bullet, transform.position + new Vector3(bulletdirn.x, bulletdirn.y, 0), Quaternion.identity);
+                    if(f.hacks.Contains("XRAY"))
+                    {
+                        Physics2D.IgnoreLayerCollision(3, 6);
+                    }
                     obj.GetComponent<BulletScript>().parent = GetComponent<EnemyScript>();
                     obj.GetComponent<Rigidbody2D>().velocity = bulletdirn * bulletSpeed;
                     float angle = UnityEngine.Random.Range(0, 2 * Mathf.PI);
@@ -141,7 +147,7 @@ public class EnemyScript : MonoBehaviour
 
     IEnumerator fireBullet()
     { 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1f / (f.hacks.Contains("FRT") ? 2f : 1f));
         isCombat = false;
     }
 

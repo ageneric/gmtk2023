@@ -15,6 +15,7 @@ public class Spawner : MonoBehaviour
     public Transform[] spawnPoints;
     string usernames = "snap;get;melodic;opening;tshirt;supporter;loan;simply;enchant;scold;axel;came;convolvulus;and;argent;illiterate;power;landscape;grand;dug;translate;shrug;everyday;sport;obey;maker;miniature;mussels;perpetual;told;wool;sarong;petticoat;feliz;swim;achoo;reserved;neither;serpentine;culottes;nucleus;level;coal;seagull;sales;evening;insidious;pelt;key;disgusted";
     List<string> usernamelist;
+    public string[] possiblehacks;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,7 +55,8 @@ public class Spawner : MonoBehaviour
         usernamelist.RemoveAt(usernameindex);
         if (fighterIsHacker)
         {
-            newFighter.hacks.Add("SPEED");
+            //newFighter.hacks.Add(possiblehacks[UnityEngine.Random.Range(0,possiblehacks.Length)]);
+            newFighter.hacks.Add("XRAY");
         }
 
         leaderboard.RegisterFighter(newFighter);

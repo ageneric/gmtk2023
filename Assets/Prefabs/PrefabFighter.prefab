@@ -69,7 +69,7 @@ Transform:
   - {fileID: 360561635078714811}
   - {fileID: 2314445527691579661}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &705413034860168096
 MonoBehaviour:
@@ -91,7 +91,7 @@ MonoBehaviour:
   timeSurvived: 0
   block: 0
   username: 
-  hack: 
+  hacks: []
   active: 1
   banned: 0
   spriteRenderer: {fileID: 1275778207329841557}
@@ -177,6 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36d5752ce0dd98f47b2a0c1f28e38d09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
   startPos: {x: 0, y: 0, z: 0}
   command: 0
   awareness: 20
@@ -184,7 +185,7 @@ MonoBehaviour:
   isLooking: 0
   isWaiting: 0
   bullet: {fileID: 8931437159775477925, guid: 95ac5c3a528e70f428aa4f8e6aca794e, type: 3}
-  bulletSpeed: 10
+  bulletSpeed: 25
 --- !u!50 &6592166392665314061
 Rigidbody2D:
   serializedVersion: 4
