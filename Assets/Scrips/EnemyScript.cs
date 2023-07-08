@@ -14,6 +14,9 @@ public class EnemyScript : MonoBehaviour
     public float minClearance=5f;
     bool speedSelect;
     bool isCombat;
+    bool isLooking=false;
+    bool isWaiting;
+    int bulletsFired = 0;
     Rigidbody2D rb;
 
     public GameObject bullet;
@@ -43,11 +46,18 @@ public class EnemyScript : MonoBehaviour
         switch (command)
         {
             case 0:
-                
+                if(!isLooking)
+                {
+                    isLooking = true;
+                    int chosenPoint = UnityEngine.Random.Range(0, waypoints.Count);
+                    chosenPos = waypoints[chosenPoint].position;
+                    Debug.Log(chosenPos);
+                }
                 Vector2 distance = chosenPos - new Vector2(transform.position.x, transform.position.y);
                 
                 if (distance.magnitude < 0.01f)
                 {
+                    StartCoroutine(lookCooldown());
                     transform.position = new Vector3(chosenPos.x, chosenPos.y, 0);
                     command = 1;
                     rb.velocity = Vector2.zero;
@@ -67,9 +77,11 @@ public class EnemyScript : MonoBehaviour
                     RaycastHit2D hit = Physics2D.Raycast(transform.position, v);
                     Debug.Log(hit);
                     Debug.Log(hit.collider.name);
-                    if(hit.collider.tag == "Player" && hit.distance < 100)
+                    if(hit.collider.tag == "Player" && hit.distance < 100 && isLooking)
                     {
                         command = 2;
+                        isLooking = false;
+                        StartCoroutine(lookCooldown());
                         target = hit.transform;
                         rb.velocity = Vector2.zero;
                         break;
@@ -90,6 +102,11 @@ public class EnemyScript : MonoBehaviour
                 rb.velocity = vel.normalized;
                 break;
             case 2:
+                if(!isWaiting)
+                {
+                    isWaiting = true;
+                    StartCoroutine(waitCooldown());
+                }
                 if(!isCombat)
                 {
                     rb.velocity = Vector2.zero;
@@ -115,11 +132,22 @@ public class EnemyScript : MonoBehaviour
         isCombat = false;
     }
 
+    IEnumerator waitCooldown()
+    {
+        yield return new WaitForSeconds(6);
+        command = 0;
+        isWaiting = false;
+    }
+
+    IEnumerator lookCooldown()
+    {
+        yield return new WaitForSeconds(12);
+        isLooking = false;
+    }
+
     void onSpawn()
     {
         
-        int chosenPoint = UnityEngine.Random.Range(0, waypoints.Count);
-        chosenPos = waypoints[chosenPoint].position;
-        Debug.Log(chosenPos);
+        
     }
 }
