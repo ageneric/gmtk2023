@@ -50,12 +50,13 @@ public class Fighter : MonoBehaviour
             }
             if (Input.GetMouseButtonDown(0))
             {
-                Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10);
-                Vector2 cubeRay = Camera.main.ScreenToWorldPoint(mousePosition);
-                RaycastHit2D cubeHit = Physics2D.Raycast(cubeRay, Vector2.zero);
-                Debug.Log(cubeHit.collider);
-                if (cubeHit.collider != null) Ban();
-                
+                Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+                Vector2 clickPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
+                GameObject g = Physics2D.OverlapPoint(clickPos).gameObject;
+                if(g.tag == "Player")
+                {
+                    g.GetComponent<Fighter>().Ban();
+                }
             }
 
             if (health < maxHealth)
