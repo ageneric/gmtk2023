@@ -38,11 +38,14 @@ public class CameraMovement : MonoBehaviour {
                 Velocity.x = 0f;
         }
         Position += Velocity * Time.deltaTime;
+        Position.x = Mathf.Clamp(Position.x, -100, 100);
+        Position.y = Mathf.Clamp(Position.y, -100, 100);
         this.transform.position = Position;
     }
 
     public void MoveCameraTo(Vector3 newPosition)
     {
+        Position.z = -10;
         float newSpeed = Mathf.Min(Speed, (newPosition - Position).magnitude);
         Velocity = (newPosition - Position).normalized * newSpeed;
         Position = newPosition;
