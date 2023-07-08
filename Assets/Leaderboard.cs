@@ -48,6 +48,7 @@ public class Leaderboard : MonoBehaviour
     public void RegisterFighter(Fighter newFighter)
     {
         fighters.Add(newFighter);
+        AddLeaderboardRecord(newFighter);
     }
 
     public void AddLeaderboardRecord(Fighter fighter)
