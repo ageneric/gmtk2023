@@ -67,8 +67,6 @@ public class Fighter : MonoBehaviour
                 health = maxHealth;
             }
 
-            health = Mathf.Round(health);
-
             timeSurvived += Time.deltaTime;
         }
     }

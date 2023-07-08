@@ -20,15 +20,15 @@ public class FighterLabel : MonoBehaviour
     void Update()
     {
         string NewLine = System.Environment.NewLine;
-        labelText.text = fighter.health.ToString() + "/" + fighter.maxHealth.ToString() + "HP" + NewLine
-                         + fighter.username;
+        labelText.text = fighter.username;
 
         if (Input.GetButton("Jump"))
         {
-            labelText.text += NewLine + "Hack = " + (fighter.hacks.Count > 0 ? fighter.hacks[0] : "");
+            labelText.text += NewLine + fighter.health.ToString() + "/" + fighter.maxHealth.ToString() + "HP"
+                            + NewLine + "Hack = " + (fighter.hacks.Count > 0 ? fighter.hacks[0] : "");
         }
 
         float healthBarScale = Mathf.Clamp01(fighter.health / fighter.maxHealth);
-        healthBarFill.localScale = new Vector3(healthBarScale, 0.0625f, 1f);
+        healthBarFill.localScale = new Vector3(healthBarScale * 2f, 0.0625f, 1f);
     }
 }

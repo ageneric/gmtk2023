@@ -226,8 +226,11 @@ MonoBehaviour:
   fireRateMultiplier: 3
   combatTime: 1
   movementTime: 6
+  confidence: 0
+  confidencegain: 0.2
   isLooking: 0
   isWaiting: 0
+  isHacking: 0
   bullet: {fileID: 8931437159775477925, guid: 95ac5c3a528e70f428aa4f8e6aca794e, type: 3}
   bulletSpeed: 25
 --- !u!50 &6592166392665314061
@@ -367,7 +370,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5722484297488472669}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.455, z: 0}
+  m_LocalPosition: {x: 0, y: 0.375, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -424,7 +427,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5722484297488472669}
-  m_Text: 
+  m_Text: a
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -511,7 +514,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -1567967995, guid: c508653b96e471e42ab6829bc04176ae, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -595,7 +598,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -1567967995, guid: c508653b96e471e42ab6829bc04176ae, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 0.00030589104, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0

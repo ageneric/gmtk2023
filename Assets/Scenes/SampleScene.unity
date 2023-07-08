@@ -1987,10 +1987,10 @@ RectTransform:
   m_Father: {fileID: 2106848936}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 150, y: -100}
-  m_SizeDelta: {x: 300, y: 200}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -0.0000076293945, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1029315817
 MonoBehaviour:
@@ -2804,8 +2804,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1576738390}
   m_HandleRect: {fileID: 1576738389}
   m_Direction: 2
-  m_Value: -0.00000034877232
-  m_Size: 0.125
+  m_Value: 0
+  m_Size: 0.020408163
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3367,8 +3367,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 1400.0005}
-  m_SizeDelta: {x: 0, y: 1600}
+  m_AnchoredPosition: {x: 0, y: 9600}
+  m_SizeDelta: {x: 0, y: 9800}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1566117892
 MonoBehaviour:
@@ -4318,7 +4318,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 300, y: 200}
+  m_SizeDelta: {x: 364.0316, y: 200}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &2106848938
 MonoBehaviour:
@@ -4452,6 +4452,26 @@ PrefabInstance:
     - target: {fileID: 2597850399883200735, guid: ed1a5a5230ff2ae4592955aea23c4818, type: 3}
       propertyPath: m_Name
       value: KillLogRecord
+      objectReference: {fileID: 0}
+    - target: {fileID: 2920277297792090377, guid: ed1a5a5230ff2ae4592955aea23c4818, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2920277297792090377, guid: ed1a5a5230ff2ae4592955aea23c4818, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7599109628800252908, guid: ed1a5a5230ff2ae4592955aea23c4818, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7599109628800252908, guid: ed1a5a5230ff2ae4592955aea23c4818, type: 3}
+      propertyPath: m_margin.x
+      value: 60.14203
+      objectReference: {fileID: 0}
+    - target: {fileID: 7599109628800252908, guid: ed1a5a5230ff2ae4592955aea23c4818, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8255463234913570109, guid: ed1a5a5230ff2ae4592955aea23c4818, type: 3}
       propertyPath: m_Pivot.x
