@@ -10,13 +10,14 @@ public class EnemyScript : MonoBehaviour
     Vector2 chosenPos;
     Vector2 chosenPosDelta;
     public Vector3 startPos;
-    int command = 0;
+    public int command = 0;
     public int awareness = 10;
     public float minClearance=5f;
     bool speedSelect;
     bool isCombat;
-    bool isLooking=false;
-    bool isWaiting;
+    public bool isLooking=false;
+    public bool isWaiting;
+    Fighter f;
     Rigidbody2D rb;
 
     public GameObject bullet;
@@ -25,6 +26,7 @@ public class EnemyScript : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        f = GetComponent<Fighter>();
         foreach(GameObject g in GameObject.FindGameObjectsWithTag("Waypoint"))
         {
             waypoints.Add(g.transform);
@@ -47,6 +49,10 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!f.active)
+        {
+            return;
+        }
         speedSelect = false;
         switch (command)
         {
@@ -119,7 +125,7 @@ public class EnemyScript : MonoBehaviour
                     isCombat = true;
                     chosenPos = target.position;
                     var obj = Instantiate(bullet, transform.position + (new Vector3(chosenPos.x,chosenPos.y,0)-transform.position).normalized, Quaternion.identity);
-                    
+                    obj.GetComponent<BulletScript>().parent = this;
                     Vector3 dirn = new Vector2(chosenPos.x - transform.position.x, chosenPos.y - transform.position.y).normalized;
                     float theta = Mathf.Atan(dirn.y / dirn.x);
                     theta += UnityEngine.Random.Range(-0.1f, 0.1f);

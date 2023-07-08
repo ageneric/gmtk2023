@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
+    public EnemyScript parent;
     // Start is called before the first frame update
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -13,8 +14,16 @@ public class BulletScript : MonoBehaviour
         }
         if(collision.collider.tag == "Player")
         {
-            Destroy(gameObject);
+            Fighter f = collision.gameObject.GetComponent<Fighter>();
+            
             collision.gameObject.GetComponent<Fighter>().TakeDamage(34);
+            if(f.health <= 0)
+            {
+                parent.command = 0;
+                parent.isLooking = false;
+                parent.isWaiting = false;
+            }
+            Destroy(gameObject);
         }
     }
 }

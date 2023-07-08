@@ -30,7 +30,7 @@ public class Spawner : MonoBehaviour
     public void CreateFighterGroup()
     {
         bool[] fighterIsHacker = new bool[spawnCount];
-        fighterIsHacker[Random.Range(0, spawnCount - 1)] = true;
+        //fighterIsHacker[Random.Range(0, spawnCount - 1)] = true;
 
         for (int i=0; i<spawnCount; i++)
         {
