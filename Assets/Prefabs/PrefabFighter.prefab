@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 2107891575234553669}
   - component: {fileID: 3450943335472351653}
   - component: {fileID: -3573601084954550869}
+  - component: {fileID: 6592166392665314061}
   m_Layer: 0
   m_Name: PrefabFighter
   m_TagString: Player
@@ -82,8 +83,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03c8efd106bf8d7488201a7af5195598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
-  maxHealth: 1
+  health: 100
+  maxHealth: 100
   speed: 1
   stamina: 1
   regeneration: 1
@@ -148,7 +149,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -176,9 +177,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36d5752ce0dd98f47b2a0c1f28e38d09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startPos: {x: 0, y: 0, z: 0}
   awareness: 10
-  minClearance: 5
+  minClearance: 2
   bullet: {fileID: 8931437159775477925, guid: 95ac5c3a528e70f428aa4f8e6aca794e, type: 3}
+  bulletSpeed: 10
+--- !u!50 &6592166392665314061
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003966404252564747}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &2549117897694417736
 GameObject:
   m_ObjectHideFlags: 0

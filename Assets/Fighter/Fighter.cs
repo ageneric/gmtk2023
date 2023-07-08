@@ -24,10 +24,12 @@ public class Fighter : MonoBehaviour
     public bool banned = false;
 
     public SpriteRenderer spriteRenderer;
+    EnemyScript enemy;
 
     // Start is called before the first frame update
     void Start()
     {
+        enemy = GetComponent<EnemyScript>();
         health = maxHealth;
         timeSurvived = 0;
     }
@@ -37,6 +39,12 @@ public class Fighter : MonoBehaviour
     {
         if (active)
         {
+            if(health <= 0)
+            {
+                active = false;
+                gameObject.GetComponentInChildren<SpriteRenderer>().gameObject.SetActive(false);
+                StartCoroutine(respawn());
+            }
             if (Input.GetMouseButtonDown(0))
             {
                 Vector2 cubeRay = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -46,23 +54,26 @@ public class Fighter : MonoBehaviour
 
             if (health < maxHealth)
             {
-                health = Mathf.Min(health + regeneration * Time.deltaTime, maxHealth);
+                health = Mathf.Min(health + regeneration * Time.deltaTime,maxHealth);
             }
+            else
+            {
+                health = maxHealth;
+            }
+
+            health = Mathf.Round(health);
 
             timeSurvived += Time.deltaTime;
         }
     }
 
-    public void Attack(GameObject target)
-    {
-        // target: Fighter prefab
-        // TODO: This will use the fighter's weapon.
-        target.GetComponent<Fighter>().TakeDamage(1);
-    }
-
     public void TakeDamage(float damage)
     {
-        health -= damage;
+        if(active)
+        {
+            health -= damage;
+        }
+        
         // TODO: Animate sprite upon taking damage.
     }
 
@@ -76,5 +87,14 @@ public class Fighter : MonoBehaviour
         // TODO: contain all the living fighter logic under a child GameObject
         //       then disable it when the fighter is banned.
         gameObject.GetComponentInChildren<SpriteRenderer>().gameObject.SetActive(false);
+    }
+
+    IEnumerator respawn()
+    {
+        yield return new WaitForSeconds(3);
+        transform.position = enemy.startPos;
+        gameObject.GetComponentInChildren<SpriteRenderer>().gameObject.SetActive(true);
+        health = maxHealth;
+        active = true;
     }
 }
