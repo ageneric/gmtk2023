@@ -13,14 +13,12 @@ public class Spawner : MonoBehaviour
 
     private float width;
     public Transform[] spawnPoints;
-    public GameObject spawnPointHolder;
     string usernames = "snap;get;melodic;opening;tshirt;supporter;loan;simply;enchant;scold;axel;came;convolvulus;and;argent;illiterate;power;landscape;grand;dug;translate;shrug;everyday;sport;obey;maker;miniature;mussels;perpetual;told;wool;sarong;petticoat;feliz;swim;achoo;reserved;neither;serpentine;culottes;nucleus;level;coal;seagull;sales;evening;insidious;pelt;key;disgusted";
     List<string> usernamelist;
     public string[] possiblehacks;
     // Start is called before the first frame update
     void Start()
     {
-        spawnPoints = spawnPointHolder.GetComponentsInChildren<Transform>();
         width = spawnArea.size[0];
         usernamelist = usernames.Split(";").ToList<string>();
         CreateFighterGroup();
@@ -43,16 +41,16 @@ public class Spawner : MonoBehaviour
 
         for (int i=0; i<spawnCount; i++)
         {
-            CreateFighter(i, fighterIsHacker[i]);
+            CreateFighter(fighterIsHacker[i]);
         }
     }
 
-    public void CreateFighter(int i, bool fighterIsHacker)
+    public void CreateFighter(bool fighterIsHacker)
     {
         //Old spawn code commented out for (possibly temp) FFA code
         /**Vector2 position = new Vector2(transform.position.x + width * ((float)i / (float)spawnCount) - width/2f,
                                        transform.position.y);**/
-        Vector2 position = spawnPoints[i].position;
+        Vector2 position = spawnPoints[UnityEngine.Random.Range(0,spawnPoints.Length)].position;
         GameObject gameObjectFighter = Instantiate(prefabFighter, position, Quaternion.identity);
         Fighter newFighter = gameObjectFighter.GetComponent<Fighter>();
         int usernameindex = Random.Range(0, usernamelist.Count);
