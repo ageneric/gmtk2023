@@ -210,11 +210,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36d5752ce0dd98f47b2a0c1f28e38d09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waypoints: []
   target: {fileID: 0}
   startPos: {x: 0, y: 0, z: 0}
   command: 0
   awareness: 20
   minClearance: 2
+  visionRange: 50
+  combatRange: 20
+  maxBloom: 0.25
+  speedMultiplier: 2
+  fireRateMultiplier: 3
+  combatTime: 1
+  movementTime: 6
   isLooking: 0
   isWaiting: 0
   bullet: {fileID: 8931437159775477925, guid: 95ac5c3a528e70f428aa4f8e6aca794e, type: 3}

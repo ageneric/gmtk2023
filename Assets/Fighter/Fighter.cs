@@ -107,7 +107,7 @@ public class Fighter : MonoBehaviour
         if (!banned)
         {
             yield return new WaitForSeconds(1.75f);
-            transform.position = enemy.startPos;
+            transform.position = enemy.waypoints[UnityEngine.Random.Range(0,enemy.waypoints.Count)].position;
             enemy.command = 0;
             visibleProfile.SetActive(true);
             health = maxHealth;

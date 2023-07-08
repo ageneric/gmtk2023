@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyScript : MonoBehaviour
 {
 
-    List<Transform> waypoints = new List<Transform>();
+    public List<Transform> waypoints = new List<Transform>();
     public Transform target;
     Vector2 chosenPos;
     Vector2 chosenPosDelta;
@@ -121,7 +121,7 @@ public class EnemyScript : MonoBehaviour
                         }
                         else if (hit.distance < 0.5 * minClearance && !f.hacks.Contains("NOCLP"))
                         {
-                            vel += -v;
+                            //vel += -v;
                         }
                     }
                 }

@@ -43,16 +43,16 @@ public class Spawner : MonoBehaviour
 
         for (int i=0; i<spawnCount; i++)
         {
-            CreateFighter(i, fighterIsHacker[i]);
+            CreateFighter(fighterIsHacker[i]);
         }
     }
 
-    public void CreateFighter(int i, bool fighterIsHacker)
+    public void CreateFighter(bool fighterIsHacker)
     {
         //Old spawn code commented out for (possibly temp) FFA code
         /**Vector2 position = new Vector2(transform.position.x + width * ((float)i / (float)spawnCount) - width/2f,
                                        transform.position.y);**/
-        Vector2 position = spawnPoints[i].position;
+        Vector2 position = spawnPoints[UnityEngine.Random.Range(0,spawnPoints.Length)].position;
         GameObject gameObjectFighter = Instantiate(prefabFighter, position, Quaternion.identity);
         Fighter newFighter = gameObjectFighter.GetComponent<Fighter>();
         int usernameindex = Random.Range(0, usernamelist.Count);
