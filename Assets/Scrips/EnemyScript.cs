@@ -120,15 +120,12 @@ public class EnemyScript : MonoBehaviour
                             command = 2;
                             isLooking = true;
                             StartCoroutine(lookCooldown());
-
-                            rb.velocity = Vector2.zero;
                             break;
                         }
                         if (distance.magnitude < 0.01f)
                         {
                             transform.position = new Vector3(chosenPos.x, chosenPos.y, 0);
                             rb.velocity = Vector2.zero;
-
                             break;
                         }
                         if (hit.distance > minClearance || (f.hacks.Contains("NOCLP") && isHacking))
