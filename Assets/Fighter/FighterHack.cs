@@ -17,9 +17,5 @@ public class FighterHack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (fighter.hack == "defaultHack")
-        {
-            fighter.health += 0.1f;
-        }
     }
 }

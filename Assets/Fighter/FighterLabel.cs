@@ -21,7 +21,7 @@ public class FighterLabel : MonoBehaviour
         string NewLine = System.Environment.NewLine;
         labelText.text = fighter.health.ToString() + "/" + fighter.maxHealth.ToString() + "HP" + NewLine
             + fighter.username + NewLine
-            + "Hack = " + fighter.hack;
+            + "Hack = " + (fighter.hacks.Count >0 ? fighter.hacks[0] : "");
 
         float healthBarScale = Mathf.Clamp01(fighter.health / fighter.maxHealth);
         // TODO: Create a health bar. Scale the fill object by health.

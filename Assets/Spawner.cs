@@ -33,7 +33,7 @@ public class Spawner : MonoBehaviour
     {
         bool[] fighterIsHacker = new bool[spawnCount];
         //TEMP: hacks disabled
-        //fighterIsHacker[Random.Range(0, spawnCount - 1)] = true;
+        fighterIsHacker[Random.Range(0, spawnCount - 1)] = true;
 
         for (int i=0; i<spawnCount; i++)
         {
@@ -54,7 +54,7 @@ public class Spawner : MonoBehaviour
         usernamelist.RemoveAt(usernameindex);
         if (fighterIsHacker)
         {
-            newFighter.hack = "defaultHack";
+            newFighter.hacks.Add("SPEED");
         }
 
         leaderboard.RegisterFighter(newFighter);

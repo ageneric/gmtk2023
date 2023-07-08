@@ -19,7 +19,7 @@ public class Fighter : MonoBehaviour
     public float block = 0;
 
     public string username = "";
-    public string hack = "";
+    public List<string> hacks = new List<string>();
     public bool active = true;
     public bool banned = false;
 

@@ -64,7 +64,6 @@ public class EnemyScript : MonoBehaviour
                     StartCoroutine(lookCooldown());
                     int chosenPoint = UnityEngine.Random.Range(0, waypoints.Count);
                     chosenPos = waypoints[chosenPoint].position;
-                    Debug.Log(chosenPos);
                 }
                 Vector2 distance = chosenPos - new Vector2(transform.position.x, transform.position.y);
                 Vector2 vel = Vector2.zero;
@@ -79,8 +78,6 @@ public class EnemyScript : MonoBehaviour
                 foreach (Vector2 v in directions)
                 {
                     RaycastHit2D hit = Physics2D.Raycast(transform.position, v);
-                    Debug.Log(hit);
-                    Debug.Log(hit.collider.name);
                     if(hit.collider.tag == "Player" && hit.distance < 100 && isLooking && hit.transform.GetComponent<Fighter>().active == true)
                     {
                         target = hit.transform;
@@ -111,7 +108,7 @@ public class EnemyScript : MonoBehaviour
                         vel = -v;
                     }
                 }
-                rb.velocity = vel.normalized;
+                rb.velocity = vel.normalized * (f.hacks.Contains("SPEED") ? 2 : 1);
                 break;
             case 2:
                 if(!isWaiting)
