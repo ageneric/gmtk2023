@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8616227554066366892}
   - component: {fileID: 1542848230703858496}
   m_Layer: 5
-  m_Name: KillText
+  m_Name: '[LEGACY]KillText'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
