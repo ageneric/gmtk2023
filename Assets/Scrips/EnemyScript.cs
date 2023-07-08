@@ -140,7 +140,7 @@ public class EnemyScript : MonoBehaviour
     }
 
     IEnumerator fireBullet()
-    {
+    { 
         yield return new WaitForSeconds(1);
         isCombat = false;
     }

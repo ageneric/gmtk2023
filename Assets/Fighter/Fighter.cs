@@ -43,6 +43,7 @@ public class Fighter : MonoBehaviour
             {
                 active = false;
                 gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
+                GetComponentInChildren<MeshRenderer>().enabled = false;
                 StartCoroutine(respawn());
             }
             if (Input.GetMouseButtonDown(0))
@@ -94,6 +95,7 @@ public class Fighter : MonoBehaviour
         yield return new WaitForSeconds(3);
         transform.position = enemy.startPos;
         gameObject.GetComponentInChildren<SpriteRenderer>().enabled = true;
+        GetComponentInChildren<MeshRenderer>().enabled = true;
         health = maxHealth;
         active = true;
     }

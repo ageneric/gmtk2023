@@ -1,8 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
+using UnityEngine.UIElements;
 
 public class Spawner : MonoBehaviour
 {
@@ -12,7 +11,7 @@ public class Spawner : MonoBehaviour
     public int spawnCount = 1;
 
     private float width;
-
+    public Transform[] spawnPoints;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +29,7 @@ public class Spawner : MonoBehaviour
     public void CreateFighterGroup()
     {
         bool[] fighterIsHacker = new bool[spawnCount];
+        //TEMP: hacks disabled
         //fighterIsHacker[Random.Range(0, spawnCount - 1)] = true;
 
         for (int i=0; i<spawnCount; i++)
@@ -40,8 +40,10 @@ public class Spawner : MonoBehaviour
 
     public void CreateFighter(int i, bool fighterIsHacker)
     {
-        Vector2 position = new Vector2(transform.position.x + width * ((float)i / (float)spawnCount) - width/2f,
-                                       transform.position.y);
+        //Old spawn code commented out for (possibly temp) FFA code
+        /**Vector2 position = new Vector2(transform.position.x + width * ((float)i / (float)spawnCount) - width/2f,
+                                       transform.position.y);**/
+        Vector2 position = spawnPoints[i].position;
         GameObject gameObjectFighter = Instantiate(prefabFighter, position, Quaternion.identity);
         Fighter newFighter = gameObjectFighter.GetComponent<Fighter>();
 
