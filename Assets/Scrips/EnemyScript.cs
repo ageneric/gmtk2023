@@ -132,7 +132,7 @@ public class EnemyScript : MonoBehaviour
                     var obj = Instantiate(bullet, transform.position + new Vector3(bulletdirn.x, bulletdirn.y, 0), Quaternion.identity);
                     if(f.hacks.Contains("XRAY"))
                     {
-                        Physics2D.IgnoreLayerCollision(3, 6);
+                        obj.layer = LayerMask.NameToLayer("XRayBullet");
                     }
                     obj.GetComponent<BulletScript>().parent = GetComponent<EnemyScript>();
                     obj.GetComponent<Rigidbody2D>().velocity = bulletdirn * bulletSpeed;

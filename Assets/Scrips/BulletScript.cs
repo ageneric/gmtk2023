@@ -15,7 +15,7 @@ public class BulletScript : MonoBehaviour
     {
         Fighter f = collision.gameObject.GetComponent<Fighter>();
         Fighter pf = parent.GetComponent<Fighter>();
-        if (collision.collider.tag == "Wall" && !pf.hacks.Contains("XRAY"))
+        if (collision.collider.tag == "Wall")
         {
             Destroy(gameObject);
         }
