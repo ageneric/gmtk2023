@@ -63,8 +63,8 @@ public class Spawner : MonoBehaviour
 
         if (fighterIsHacker)
         {
-            newFighter.hacks.Add(possiblehacks[UnityEngine.Random.Range(0,possiblehacks.Length)]);
-            //newFighter.hacks.Add("IMMUN");
+            string newhack = possiblehacks[UnityEngine.Random.Range(0, possiblehacks.Length)];
+            newFighter.hacks.Add(newhack);
         }
 
         if(newFighter.hacks.Contains("NOCLP"))

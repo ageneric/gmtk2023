@@ -13,6 +13,13 @@ public class EnemyScript : MonoBehaviour
     public int command = 0;
     public int awareness = 10;
     public float minClearance=5f;
+    public float visionRange = 10f;
+    public float combatRange = 5f;
+    public float maxBloom = 0.25f;
+    public float speedMultiplier = 2f;
+    public float fireRateMultiplier = 3f;
+    public float combatTime = 1f;
+    public float movementTime = 6f;
     bool speedSelect;
     bool isCombat;
     public bool isLooking=false;
@@ -80,14 +87,14 @@ public class EnemyScript : MonoBehaviour
                 
                 foreach (Vector2 v in directions)
                 {
-                    RaycastHit2D hit = Physics2D.Raycast(transform.position, v, 5f);
+                    RaycastHit2D hit = Physics2D.Raycast(transform.position, v, visionRange);
                     if (hit.collider == null)
                     {
                         
                     }
                     else
                     {
-                        if ((hit.collider.tag == "Player") && hit.distance < 100 && isLooking && hit.transform.GetComponent<Fighter>().active == true && hit.collider.gameObject != gameObject)
+                        if ((hit.collider.tag == "Player") && hit.distance < combatRange && isLooking && hit.transform.GetComponent<Fighter>().active == true && hit.collider.gameObject != gameObject)
                         {
                             target = hit.transform;
                             command = 2;
@@ -114,11 +121,11 @@ public class EnemyScript : MonoBehaviour
                         }
                         else if (hit.distance < 0.5 * minClearance && !f.hacks.Contains("NOCLP"))
                         {
-                            vel = -v;
+                            vel += -v;
                         }
                     }
                 }
-                rb.velocity = vel.normalized * (f.hacks.Contains("SPEED") ? f.speed * 2 : f.speed);
+                rb.velocity = vel.normalized * (f.hacks.Contains("SPEED") ? f.speed * speedMultiplier : f.speed);
                 break;
             case 2:
                 if(!isWaiting)
@@ -135,7 +142,7 @@ public class EnemyScript : MonoBehaviour
                     
                     Vector3 dirn = new Vector2(chosenPos.x - transform.position.x, chosenPos.y - transform.position.y).normalized;
                     float theta = Mathf.Atan2(dirn.y, dirn.x);
-                    float bloom = (f.hacks.Contains("AMBT") ? 0 : 0.25f);
+                    float bloom = (f.hacks.Contains("AMBT") ? 0 : maxBloom);
                     theta += UnityEngine.Random.Range(-bloom, bloom);
                     Vector2 bulletdirn = new Vector2(Mathf.Cos(theta), Mathf.Sin(theta));
                     var obj = Instantiate(bullet, transform.position + new Vector3(bulletdirn.x, bulletdirn.y, 0), Quaternion.identity);
@@ -156,20 +163,20 @@ public class EnemyScript : MonoBehaviour
 
     IEnumerator fireBullet()
     { 
-        yield return new WaitForSeconds(1f / (f.hacks.Contains("FRT") ? 2f : 1f));
+        yield return new WaitForSeconds(1f / (f.hacks.Contains("FRT") ? fireRateMultiplier : 1f));
         isCombat = false;
     }
 
     IEnumerator waitCooldown()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(combatTime);
         command = 0;
         isWaiting = false;
     }
 
     IEnumerator lookCooldown()
     {
-        yield return new WaitForSeconds(12);
+        yield return new WaitForSeconds(movementTime);
         isLooking = false;
     }
 }
