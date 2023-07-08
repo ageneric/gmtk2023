@@ -56,7 +56,12 @@ public class Spawner : MonoBehaviour
         if (fighterIsHacker)
         {
             //newFighter.hacks.Add(possiblehacks[UnityEngine.Random.Range(0,possiblehacks.Length)]);
-            newFighter.hacks.Add("XRAY");
+            newFighter.hacks.Add("IMMUN");
+        }
+
+        if(newFighter.hacks.Contains("NOCLP"))
+        {
+            gameObjectFighter.layer = LayerMask.NameToLayer("NoClipPlayer");
         }
 
         leaderboard.RegisterFighter(newFighter);

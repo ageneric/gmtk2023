@@ -37,6 +37,7 @@ public class EnemyScript : MonoBehaviour
     private void Awake()
     {
         startPos = transform.position;
+        
     }
 
     int comparePathVectors(Vector2 a,Vector2 b)
@@ -49,6 +50,7 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if(!f.active)
         {
             return;
@@ -79,7 +81,7 @@ public class EnemyScript : MonoBehaviour
                 foreach (Vector2 v in directions)
                 {
                     RaycastHit2D hit = Physics2D.Raycast(transform.position, v);
-                    if(hit.collider.tag == "Player" && hit.distance < 100 && isLooking && hit.transform.GetComponent<Fighter>().active == true && hit.collider.gameObject != gameObject)
+                    if((hit.collider.tag == "Player") && hit.distance < 100 && isLooking && hit.transform.GetComponent<Fighter>().active == true && hit.collider.gameObject != gameObject)
                     {
                         target = hit.transform;
                         command = 2;
@@ -104,7 +106,7 @@ public class EnemyScript : MonoBehaviour
                             speedSelect = true;
                         }
                     }
-                    else if(hit.distance < 0.5*minClearance)
+                    else if(hit.distance < 0.5*minClearance && !f.hacks.Contains("NOCLP"))
                     {
                         vel = -v;
                     }
