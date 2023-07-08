@@ -28,7 +28,7 @@ public class BulletScript : MonoBehaviour
                 Destroy(gameObject);
                 return;
             }
-            collision.gameObject.GetComponent<Fighter>().TakeDamage(25*(pf.hacks.Contains("DMG") ? 4 : 1)*(f.hacks.Contains("IMMUN") ? 0 : 1));
+            collision.gameObject.GetComponent<Fighter>().TakeDamage(25*(pf.hacks.Contains("DMG") && parent.isHacking? 4 : 1)*(f.hacks.Contains("IMMUN") && parent.isHacking ? 0 : 1));
             if(f.health <= 0)
             {
                 kl.addKill(pf, f, pf.gameObject.transform.position);

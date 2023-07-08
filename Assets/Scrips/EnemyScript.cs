@@ -22,10 +22,13 @@ public class EnemyScript : MonoBehaviour
     public float fireRateMultiplier = 3f;
     public float combatTime = 1f;
     public float movementTime = 6f;
+    public float confidence = 0f;
+    public float confidencegain = 0.2f;
     bool speedSelect;
     bool isCombat;
     public bool isLooking=false;
     public bool isWaiting;
+    public bool isHacking;
     Fighter f;
     Rigidbody2D rb;
 
@@ -59,6 +62,17 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if(!isHacking)
+        {
+            confidence += confidencegain * (f.maxHealth / f.health);
+            if (confidence > 100f)
+            {
+                isHacking = true;
+                confidence = 0;
+                StartCoroutine(hackCooldown());
+            }
+        }
+        
         
         if(!f.active)
         {
@@ -117,7 +131,7 @@ public class EnemyScript : MonoBehaviour
 
                             break;
                         }
-                        if (hit.distance > minClearance)
+                        if (hit.distance > minClearance || (f.hacks.Contains("NOCLP") && isHacking))
                         {
                             if (!speedSelect)
                             {
@@ -135,7 +149,7 @@ public class EnemyScript : MonoBehaviour
                 {
                     blacklistedDirns.Clear();
                 }
-                rb.velocity = vel.normalized * (f.hacks.Contains("SPEED") ? f.speed * speedMultiplier : f.speed);
+                rb.velocity = vel.normalized * (f.hacks.Contains("SPEED") && isHacking ? f.speed * speedMultiplier : f.speed);
                 oldvel = vel;
                 break;
             case 2:
@@ -153,11 +167,11 @@ public class EnemyScript : MonoBehaviour
                     
                     Vector3 dirn = new Vector2(chosenPos.x - transform.position.x, chosenPos.y - transform.position.y).normalized;
                     float theta = Mathf.Atan2(dirn.y, dirn.x);
-                    float bloom = (f.hacks.Contains("AMBT") ? 0 : maxBloom);
+                    float bloom = (f.hacks.Contains("AMBT") && isHacking ? 0 : maxBloom);
                     theta += UnityEngine.Random.Range(-bloom, bloom);
                     Vector2 bulletdirn = new Vector2(Mathf.Cos(theta), Mathf.Sin(theta));
                     var obj = Instantiate(bullet, transform.position + new Vector3(bulletdirn.x, bulletdirn.y, 0), Quaternion.identity);
-                    if(f.hacks.Contains("XRAY"))
+                    if(f.hacks.Contains("XRAY") && isHacking)
                     {
                         obj.layer = LayerMask.NameToLayer("XRayBullet");
                     }
@@ -174,7 +188,7 @@ public class EnemyScript : MonoBehaviour
 
     IEnumerator fireBullet()
     { 
-        yield return new WaitForSeconds(1f / (f.hacks.Contains("FRT") ? fireRateMultiplier : 1f));
+        yield return new WaitForSeconds(1f / (f.hacks.Contains("FRT") && isHacking ? fireRateMultiplier : 1f));
         isCombat = false;
     }
 
@@ -189,5 +203,11 @@ public class EnemyScript : MonoBehaviour
     {
         yield return new WaitForSeconds(movementTime);
         isLooking = false;
+    }
+
+    IEnumerator hackCooldown()
+    {
+        yield return new WaitForSeconds(10);
+        isHacking = false;
     }
 }

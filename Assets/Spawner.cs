@@ -104,7 +104,7 @@ public class Spawner : MonoBehaviour
             hackerUserNames.Add(newFighter.username);
         }
 
-        if(newFighter.hacks.Contains("NOCLP"))
+        if(newFighter.hacks.Contains("NOCLP") && newFighter.GetComponent<EnemyScript>().isHacking)
         {
             gameObjectFighter.layer = LayerMask.NameToLayer("NoClipPlayer");
         }
