@@ -5194,7 +5194,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1576738389}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.019989258
+  m_Size: 0.02
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6216,6 +6216,7 @@ GameObject:
   - component: {fileID: 1583134453}
   - component: {fileID: 1583134452}
   - component: {fileID: 1583134451}
+  - component: {fileID: 1583134454}
   m_Layer: 5
   m_Name: RecordPanel
   m_TagString: Untagged
@@ -6353,7 +6354,33 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1583134451}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1583134454}
+        m_TargetAssemblyTypeName: RecordButton, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1583134454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583134448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e85a42eac40b8ea4ea84c5fba889ca1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventLocation: {x: 0, y: 0, z: 0}
+  cameraMovement: {fileID: 519420033}
 --- !u!1 &1585793728
 GameObject:
   m_ObjectHideFlags: 0
@@ -8490,37 +8517,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1566117891}
     m_Modifications:
-    - target: {fileID: 1348696951508993561, guid: ed1a5a5230ff2ae4592955aea23c4818, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -13
-      objectReference: {fileID: 0}
     - target: {fileID: 2597850399883200735, guid: ed1a5a5230ff2ae4592955aea23c4818, type: 3}
       propertyPath: m_Name
       value: KillLogRecord
       objectReference: {fileID: 0}
-    - target: {fileID: 2920277297792090377, guid: ed1a5a5230ff2ae4592955aea23c4818, type: 3}
-      propertyPath: m_text
-      value: Time
-      objectReference: {fileID: 0}
-    - target: {fileID: 5727490466111971585, guid: ed1a5a5230ff2ae4592955aea23c4818, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5727490466111971585, guid: ed1a5a5230ff2ae4592955aea23c4818, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5727490466111971585, guid: ed1a5a5230ff2ae4592955aea23c4818, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 519420028}
+      objectReference: {fileID: 801963816131009019}
     - target: {fileID: 5727490466111971585, guid: ed1a5a5230ff2ae4592955aea23c4818, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClick
       objectReference: {fileID: 0}
-    - target: {fileID: 7599109628800252908, guid: ed1a5a5230ff2ae4592955aea23c4818, type: 3}
-      propertyPath: m_text
-      value: Kill Log
+    - target: {fileID: 5727490466111971585, guid: ed1a5a5230ff2ae4592955aea23c4818, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: RecordButton, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5727490466111971585, guid: ed1a5a5230ff2ae4592955aea23c4818, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8255463234913570109, guid: ed1a5a5230ff2ae4592955aea23c4818, type: 3}
       propertyPath: m_Pivot.x
@@ -8606,11 +8621,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8615382924155711304, guid: ed1a5a5230ff2ae4592955aea23c4818, type: 3}
+      propertyPath: cameraMovement
+      value: 
+      objectReference: {fileID: 519420033}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed1a5a5230ff2ae4592955aea23c4818, type: 3}
+--- !u!114 &801963816131009019 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8615382924155711304, guid: ed1a5a5230ff2ae4592955aea23c4818, type: 3}
+  m_PrefabInstance: {fileID: 801963816131009018}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e85a42eac40b8ea4ea84c5fba889ca1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &9028487284746353594
 PrefabInstance:
   m_ObjectHideFlags: 0
