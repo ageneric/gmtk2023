@@ -50,9 +50,12 @@ public class Fighter : MonoBehaviour
             }
             if (Input.GetMouseButtonDown(0))
             {
-                Vector2 cubeRay = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10);
+                Vector2 cubeRay = Camera.main.ScreenToWorldPoint(mousePosition);
                 RaycastHit2D cubeHit = Physics2D.Raycast(cubeRay, Vector2.zero);
-                if (cubeHit) Ban();
+                Debug.Log(cubeHit.collider);
+                if (cubeHit.collider != null) Ban();
+                
             }
 
             if (health < maxHealth)
