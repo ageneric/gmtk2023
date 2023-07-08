@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -12,11 +13,13 @@ public class Spawner : MonoBehaviour
 
     private float width;
     public Transform[] spawnPoints;
-
+    string usernames = "snap;get;melodic;opening;tshirt;supporter;loan;simply;enchant;scold;axel;came;convolvulus;and;argent;illiterate;power;landscape;grand;dug;translate;shrug;everyday;sport;obey;maker;miniature;mussels;perpetual;told;wool;sarong;petticoat;feliz;swim;achoo;reserved;neither;serpentine;culottes;nucleus;level;coal;seagull;sales;evening;insidious;pelt;key;disgusted";
+    List<string> usernamelist;
     // Start is called before the first frame update
     void Start()
     {
         width = spawnArea.size[0];
+        usernamelist = usernames.Split(";").ToList<string>();
         CreateFighterGroup();
     }
 
@@ -46,7 +49,9 @@ public class Spawner : MonoBehaviour
         Vector2 position = spawnPoints[i].position;
         GameObject gameObjectFighter = Instantiate(prefabFighter, position, Quaternion.identity);
         Fighter newFighter = gameObjectFighter.GetComponent<Fighter>();
-
+        int usernameindex = UnityEngine.Random.Range(0, usernamelist.Count);
+        newFighter.username = usernamelist[usernameindex] + UnityEngine.Random.Range(0,100).ToString("00");
+        usernamelist.RemoveAt(usernameindex);
         if (fighterIsHacker)
         {
             newFighter.hack = "defaultHack";

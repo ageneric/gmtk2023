@@ -67,13 +67,6 @@ public class EnemyScript : MonoBehaviour
                     Debug.Log(chosenPos);
                 }
                 Vector2 distance = chosenPos - new Vector2(transform.position.x, transform.position.y);
-                
-                if (distance.magnitude < 0.01f)
-                {
-                    transform.position = new Vector3(chosenPos.x, chosenPos.y, 0);
-                    rb.velocity = Vector2.zero;
-                    break;
-                }
                 Vector2 vel = Vector2.zero;
                 List<Vector2> directions = new List<Vector2>();
                 chosenPosDelta = (chosenPos - new Vector2(transform.position.x, transform.position.y)).normalized;
@@ -88,13 +81,21 @@ public class EnemyScript : MonoBehaviour
                     RaycastHit2D hit = Physics2D.Raycast(transform.position, v);
                     Debug.Log(hit);
                     Debug.Log(hit.collider.name);
-                    if(hit.collider.tag == "Player" && hit.distance < 100 && isLooking)
+                    if(hit.collider.tag == "Player" && hit.distance < 100 && isLooking && hit.transform.GetComponent<Fighter>().active == true)
                     {
+                        target = hit.transform;
                         command = 2;
                         isLooking = false;
                         StartCoroutine(lookCooldown());
-                        target = hit.transform;
+                        
                         rb.velocity = Vector2.zero;
+                        break;
+                    }
+                    if (distance.magnitude < 0.01f)
+                    {
+                        transform.position = new Vector3(chosenPos.x, chosenPos.y, 0);
+                        rb.velocity = Vector2.zero;
+
                         break;
                     }
                     if (hit.distance > minClearance)
@@ -124,12 +125,14 @@ public class EnemyScript : MonoBehaviour
                     
                     isCombat = true;
                     chosenPos = target.position;
-                    var obj = Instantiate(bullet, transform.position + (new Vector3(chosenPos.x,chosenPos.y,0)-transform.position).normalized, Quaternion.identity);
-                    obj.GetComponent<BulletScript>().parent = this;
+                    
                     Vector3 dirn = new Vector2(chosenPos.x - transform.position.x, chosenPos.y - transform.position.y).normalized;
                     float theta = Mathf.Atan(dirn.y / dirn.x);
-                    theta += UnityEngine.Random.Range(-0.1f, 0.1f);
-                    obj.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos(theta), Mathf.Sin(theta)).normalized * bulletSpeed;
+                    theta += UnityEngine.Random.Range(-0.25f, 0.25f);
+                    Vector2 bulletdirn = new Vector2(Mathf.Cos(theta), Mathf.Sin(theta));
+                    var obj = Instantiate(bullet, transform.position + new Vector3(bulletdirn.x, bulletdirn.y, 0), Quaternion.identity);
+                    obj.GetComponent<BulletScript>().parent = GetComponent<EnemyScript>();
+                    obj.GetComponent<Rigidbody2D>().velocity = bulletdirn * bulletSpeed;
                     float angle = UnityEngine.Random.Range(0, 2 * Mathf.PI);
                     rb.velocity = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
                     StartCoroutine(fireBullet());
@@ -147,7 +150,7 @@ public class EnemyScript : MonoBehaviour
 
     IEnumerator waitCooldown()
     {
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(1);
         command = 0;
         isWaiting = false;
     }
