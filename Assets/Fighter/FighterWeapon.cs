@@ -12,7 +12,7 @@ public class FighterWeapon : MonoBehaviour
 
     public void Start()
     {
-        heldWeaponSprite.sprite = weaponSprites[weapon];
+        heldWeaponSprite.sprite = weaponSprites[(int)weapon];
     }
 
     public void Shoot()
