@@ -184,7 +184,14 @@ public class EnemyScript : MonoBehaviour
                 }
                 rb.velocity = vel.normalized * (f.hacks.Contains("SPEED") && isHacking ? f.speed * speedMultiplier : f.speed);
                 
-                sr.flipX = vel.x < 0;
+                if (vel.x > 0)
+                {
+                    transform.localScale = new Vector3(1, 1, 1);
+                }
+                if (vel.x < 0)
+                {
+                    transform.localScale = new Vector3(-1, 1, 1);
+                }
 
                 oldvel = vel;
                 break;

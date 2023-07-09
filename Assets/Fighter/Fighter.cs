@@ -26,6 +26,7 @@ public class Fighter : MonoBehaviour
     public int kills = 0;
     public int deaths = 0;
     public float damageDealt = 0;
+    public FighterWeapon.Weapon weapon = FighterWeapon.Weapon.Pistol;
 
     public GameObject visibleProfile;
     public SpriteRenderer spriteRenderer;
@@ -156,7 +157,7 @@ public class Fighter : MonoBehaviour
         }
         
         visibleProfile.SetActive(false);
-        spriteRenderer.color = new Color(1, 1, 1);
+        // spriteRenderer.color = new Color(1, 1, 1);
 
         if (!banned)
         {

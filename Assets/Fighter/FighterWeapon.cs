@@ -19,11 +19,12 @@ public class FighterWeapon : MonoBehaviour
     void Start()
     {
         fighter = gameObject.GetComponent<Fighter>();
-        // heldWeaponSprite.sprite = weaponSprites[(int)fighter.weapon];
+        fighter.weapon = (Weapon)Random.Range(0, 6);
+        heldWeaponSprite.sprite = weaponSprites[(int)fighter.weapon];
     }
 
     public void Shoot()
     {
-        // public FighterWeapon.Weapon weapon = FighterWeapon.Weapon.Pistol;
+
     }
 }

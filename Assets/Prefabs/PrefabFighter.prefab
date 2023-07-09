@@ -131,6 +131,7 @@ MonoBehaviour:
   kills: 0
   deaths: 0
   damageDealt: 0
+  weapon: 0
   visibleProfile: {fileID: 1391374260608439054}
   spriteRenderer: {fileID: 1275778207329841557}
 --- !u!114 &5274308022469905860

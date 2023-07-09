@@ -144,9 +144,11 @@ public class Spawner : MonoBehaviour
         gameObjectFighter.name = "Fighter " + newFighter.username + "_" + Random.Range(0, 9999).ToString("0000");
 
         // This adds name colors!
-        Color c = Color.HSVToRGB(Random.Range(0f, 1f), 0.45f, 1);
+        float h = Random.Range(0f, 1f);
+        Color c = Color.HSVToRGB(h, 0.45f, 1);
         string hexcode = Mathf.RoundToInt(c.r * 255).ToString("X2") + Mathf.RoundToInt(c.g * 255).ToString("X2")
             + Mathf.RoundToInt(c.r * 255).ToString("X2");
+        newFighter.spriteRenderer.color = Color.HSVToRGB(h, 0.25f, 1);
 
         newFighter.username = "<color=#" + hexcode + ">" + newFighter.username + "</color>";
 
