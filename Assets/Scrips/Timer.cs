@@ -7,6 +7,7 @@ public class Timer : MonoBehaviour {
 
     private float TargetTime;
     private int TimeRn = 0;
+    public EndGame eg;
 
     [SerializeField] 
     private TMP_Text _title;
@@ -23,6 +24,9 @@ public class Timer : MonoBehaviour {
             _title.text = "" + Mathf.Floor(TargetTime - TimeRn);
             TimeRn += 1;
         }
-        
+        if(Time.time == TargetTime)
+        {
+            eg.initEndgame();
+        }
     }
 }
