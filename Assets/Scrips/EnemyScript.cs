@@ -193,12 +193,18 @@ public class EnemyScript : MonoBehaviour
                     obj.GetComponent<BulletScript>().parent = GetComponent<EnemyScript>();
                     obj.GetComponent<Rigidbody2D>().velocity = bulletdirn * bulletSpeed;
                     float angle = UnityEngine.Random.Range(0, 2 * Mathf.PI);
-                    rb.velocity = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+                    rb.velocity = f.speed * new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
                     StartCoroutine(fireBullet());
                 }
                 
                 break;
         }
+    }
+    
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        command = 0;
+        isLooking = false;
     }
 
     IEnumerator fireBullet()

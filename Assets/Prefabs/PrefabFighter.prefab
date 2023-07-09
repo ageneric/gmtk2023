@@ -226,8 +226,8 @@ MonoBehaviour:
   maxBloom: 0.25
   speedMultiplier: 2
   fireRateMultiplier: 3
-  combatTime: 1
-  movementTime: 6
+  combatTime: 5
+  movementTime: 15
   confidence: 0
   confidencegain: 0.2
   isLooking: 0
