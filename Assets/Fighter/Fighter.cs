@@ -146,11 +146,14 @@ public class Fighter : MonoBehaviour
     {
         if(banned)
         {
-            yield return new WaitForSeconds(1.3f);
+            yield return new WaitForSeconds(0.6f);
+            enemy.audiosrc[2].Play();
+            yield return new WaitForSeconds(0.7f);
         }
         else
         {
             anim.SetTrigger("Die");
+            enemy.audiosrc[1].Play();
             yield return new WaitForSeconds(0.7f);
         }
         
