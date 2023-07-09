@@ -37,6 +37,8 @@ public class EnemyScript : MonoBehaviour
     Fighter f;
     public Rigidbody2D rb;
 
+    GameObject supplyDrop;
+
     public GameObject bullet;
     public float bulletSpeed;
     // Start is called before the first frame update
@@ -59,7 +61,14 @@ public class EnemyScript : MonoBehaviour
     private void Awake()
     {
         startPos = transform.position;
-        
+        StartCoroutine(supplyDropCheck());
+    }
+
+    IEnumerator supplyDropCheck()
+    {
+        yield return new WaitForSeconds(2f);
+        supplyDrop = GameObject.FindGameObjectsWithTag("Supply Drop")[0];
+        StartCoroutine(supplyDropCheck());
     }
 
     int comparePathVectors(Vector2 a,Vector2 b)
