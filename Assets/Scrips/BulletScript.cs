@@ -10,8 +10,8 @@ public class BulletScript : MonoBehaviour
     public float bulletSpd;
     // public ParticleSystem move;
     // public ParticleSystem expire;
-    public GameObject psMove;
-    public GameObject psExpire;
+    // public GameObject psMove;
+    // public GameObject psExpire;
 
     private float flightTimeAnimation = 0f;
     private float lifeTime = 0f;
@@ -24,13 +24,14 @@ public class BulletScript : MonoBehaviour
 
     private void Update()
     {
-        flightTimeAnimation += Time.deltaTime;
         lifeTime += Time.deltaTime;
-        if (flightTimeAnimation > 0.25f)
+
+        /*if (flightTimeAnimation > 0.25f)
         {
+            flightTimeAnimation += Time.deltaTime;
             // Instantiate(psMove, parent.transform.position, Quaternion.identity);
-        }
-        if (lifeTime > 10f)
+        }*/
+        if (lifeTime > 100f)
         {
             Destroy(gameObject);
         }

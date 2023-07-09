@@ -58,6 +58,11 @@ public class Fighter : MonoBehaviour
                 {
                     collider.gameObject.GetComponent<Fighter>().Ban();
                 }
+
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit2D hit = Physics2D.Raycast(ray);
+                Debug.Log(hit);
+                Debug.Log(hit.collider);
             }
 
             // Death
