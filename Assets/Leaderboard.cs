@@ -17,6 +17,7 @@ public class Leaderboard : MonoBehaviour
     public Transform postGameRecordContainer;
     public GameObject recordText;
     public GameObject postGameRecordText;
+    public EndGame e;
     public Color bannedItemColor = new Color(1f, 0.5f, 0.5f, 0.5f);
     public bool gameEnded = false;
 
@@ -43,7 +44,7 @@ public class Leaderboard : MonoBehaviour
 
             if (playersRemaining == 0)
             {
-                EndGame();
+                e.initEndgame();
                 gameEnded = true;
             }
             else
@@ -63,8 +64,8 @@ public class Leaderboard : MonoBehaviour
 
     public void EndGame()
     {
+        gameEnded = true;
         battleUI.SetActive(false);
-        postGameUI.SetActive(true);
 
         foreach (Fighter fighter in fighters)
         {
