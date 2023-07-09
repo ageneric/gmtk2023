@@ -48,6 +48,11 @@ public class Fighter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (transform.position.x > 10)
+        {
+            transform.position = Vector3.zero;
+            Knockout();
+        }
         if (active)
         {
             if (Input.GetMouseButtonDown(0) && ToolSelect.userTool == ToolSelect.Tool.BanHammer)

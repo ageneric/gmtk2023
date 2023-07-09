@@ -46,11 +46,11 @@ public class EnemyScript : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         f = GetComponent<Fighter>();
-        waypoints = GameObject.Find("FighterSpawnerZone").GetComponent<Spawner>().spawnPoints.ToList();
-        /**foreach(GameObject g in GameObject.FindGameObjectsWithTag("Waypoint"))
+
+        foreach(GameObject g in GameObject.FindGameObjectsWithTag("Waypoint"))
         {
             waypoints.Add(g.transform);
-        }**/
+        }
         
     }
 
