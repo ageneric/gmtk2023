@@ -31,9 +31,9 @@ public class BulletScript : MonoBehaviour
             flightTimeAnimation += Time.deltaTime;
             // Instantiate(psMove, parent.transform.position, Quaternion.identity);
         }*/
-        if (lifeTime > 100f)
+        if (lifeTime > 7f)
         {
-            // Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 
@@ -52,14 +52,15 @@ public class BulletScript : MonoBehaviour
             Fighter pf = parent.GetComponent<Fighter>();
             if (f == pf || f == null || pf == null)
             {
-                Debug.Log("Projectile ignored collision: " + f.ToString() + " " + pf.ToString());
+                // Debug.Log("Projectile ignored collision: " + f.ToString() + " " + pf.ToString());
                 // Destroy(gameObject);
                 return;
             }
             pf.damageDealt += f.TakeDamage(25*(pf.hacks.Contains("DMG") && parent.isHacking? 4 : 1)*(f.hacks.Contains("IMMUN") && parent.isHacking ? 0 : 1));
             if(f.health <= 0)
             {
-                kl.addKill(pf, f, pf.gameObject.transform.position);
+                Vector3 position = pf.gameObject.transform.position;
+                kl.addKill(pf, f, position);
                 pf.kills += 1;
                 f.deaths += 1;
                 parent.command = 0;

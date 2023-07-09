@@ -476,7 +476,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 134486339}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -894,7 +894,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 558a252fa6bc20d4c8e7f05c61699df5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraMovement: {fileID: 0}
+  cameraMovement: {fileID: 519420033}
+  left: 1024
+  right: 1246
+  low: 255
+  high: 466
 --- !u!4 &267373906 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8738688090112401190, guid: 01821aaad23547848945104039bb5efc, type: 3}
@@ -4348,9 +4352,9 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1879310663}
+  - {fileID: 236639784}
   - {fileID: 2106848936}
   - {fileID: 721027685}
-  - {fileID: 236639784}
   - {fileID: 465058662}
   - {fileID: 993384311}
   - {fileID: 732386321}
@@ -5410,7 +5414,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1576738389}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.020408163
+  m_Size: 0.020378867
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
