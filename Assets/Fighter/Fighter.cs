@@ -32,10 +32,12 @@ public class Fighter : MonoBehaviour
     Spawner s;
     EnemyScript enemy;
     EndGame e;
+    Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponentInChildren<Animator>();
         s = GameObject.Find("FighterSpawnZone").GetComponent<Spawner>();
         e = GameObject.Find("StaticScripts").GetComponent<EndGame>();
         enemy = GetComponent<EnemyScript>();
@@ -95,6 +97,9 @@ public class Fighter : MonoBehaviour
 
     public void Ban()
     {
+        
+        anim.SetTrigger("Ban");
+        
         List<Report> newReports = new List<Report>();
         foreach(Report r in s.reports)
         {
@@ -112,6 +117,7 @@ public class Fighter : MonoBehaviour
 
     public void Knockout()
     {
+        enemy.rb.velocity = Vector2.zero;
         // Kill this fighter and start the respawn timer.
         active = false;
         timeSurvived = 0;
@@ -125,8 +131,16 @@ public class Fighter : MonoBehaviour
 
     IEnumerator respawn()
     {
-        spriteRenderer.color = new Color(1, 0f, 0f, 0.5f);
-        yield return new WaitForSeconds(0.25f);
+        if(banned)
+        {
+            yield return new WaitForSeconds(1.3f);
+        }
+        else
+        {
+            anim.SetTrigger("Die");
+            yield return new WaitForSeconds(0.7f);
+        }
+        
         visibleProfile.SetActive(false);
         spriteRenderer.color = new Color(1, 1, 1);
 

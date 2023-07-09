@@ -33,7 +33,7 @@ public class EnemyScript : MonoBehaviour
     public bool isWaiting;
     public bool isHacking;
     Fighter f;
-    Rigidbody2D rb;
+    public Rigidbody2D rb;
 
     public GameObject bullet;
     public float bulletSpeed;
