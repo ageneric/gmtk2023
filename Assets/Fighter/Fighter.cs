@@ -105,6 +105,11 @@ public class Fighter : MonoBehaviour
         StartCoroutine(respawn());
     }
 
+    public float OrderingScore()
+    {
+        return damageDealt + kills*25 - deaths*20;
+    }
+
     IEnumerator respawn()
     {
         spriteRenderer.color = new Color(1, 0f, 0f, 0.5f);

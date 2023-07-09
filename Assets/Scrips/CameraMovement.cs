@@ -38,8 +38,8 @@ public class CameraMovement : MonoBehaviour {
                 Velocity.x = 0f;
         }
         Position += Velocity * Time.deltaTime;
-        Position.x = Mathf.Clamp(Position.x, -40, 10);
-        Position.y = Mathf.Clamp(Position.y, -30, 30);
+        Position.x = Mathf.Clamp(Position.x, -55, 15);
+        Position.y = Mathf.Clamp(Position.y, -32, 32);
         this.transform.position = Position;
     }
 

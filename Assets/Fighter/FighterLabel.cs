@@ -22,10 +22,11 @@ public class FighterLabel : MonoBehaviour
         string NewLine = System.Environment.NewLine;
         labelText.text = fighter.username;
 
-        if (Input.GetButton("Jump"))
+        if (Input.GetButton("Enable Debug Button 1"))
         {
-            labelText.text += NewLine + fighter.health.ToString() + "/" + fighter.maxHealth.ToString() + "HP"
-                            + NewLine + "Hack = " + (fighter.hacks.Count > 0 ? fighter.hacks[0] : "");
+            labelText.text += NewLine + Mathf.Round(fighter.health).ToString() + "/" + fighter.maxHealth.ToString() + "HP"
+                            + NewLine + "Hack = " + (fighter.hacks.Count > 0 ? fighter.hacks[0] : "")
+                            + NewLine;
         }
 
         float healthBarScale = Mathf.Clamp01(fighter.health / fighter.maxHealth);

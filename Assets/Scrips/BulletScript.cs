@@ -18,12 +18,13 @@ public class BulletScript : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        if(collision.collider.tag == "Player")
+        else if(collision.collider.tag == "Player")
         {
             Fighter f = collision.gameObject.GetComponent<Fighter>();
             Fighter pf = parent.GetComponent<Fighter>();
-            if (f == pf)
+            if (f == pf || f == null || pf == null)
             {
+                Debug.Log("Projectile ignored collision: " + f.ToString() + " " + pf.ToString());
                 Destroy(gameObject);
                 return;
             }
