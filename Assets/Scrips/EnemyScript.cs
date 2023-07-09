@@ -134,6 +134,7 @@ public class EnemyScript : MonoBehaviour
                         if (distance.magnitude < 0.01f)
                         {
                             transform.position = new Vector3(chosenPos.x, chosenPos.y, 0);
+                            isLooking = false;
                             rb.velocity = Vector2.zero;
                             break;
                         }
