@@ -139,7 +139,13 @@ public class EnemyScript : MonoBehaviour
                     
                     chosenPos = waypoints[chosenPoint].position;
                 }
+
                 Vector2 distance = chosenPos - new Vector2(transform.position.x, transform.position.y);
+                if(f.hacks.Contains("NOCLP") && isHacking)
+                {
+                    rb.velocity = distance.normalized;
+                    break;
+                }
                 Vector2 vel = Vector2.zero;
                 List<Vector2> directions = new List<Vector2>();
                 chosenPosDelta = (chosenPos - new Vector2(transform.position.x, transform.position.y)).normalized;
@@ -151,7 +157,7 @@ public class EnemyScript : MonoBehaviour
                 
                 foreach (Vector2 v in directions)
                 {
-                    if ((blacklistedDirns.Contains(v) && !f.hacks.Contains("NOCLP")) || (isHacking && f.hacks.Contains("NOCLP")))
+                    if (blacklistedDirns.Contains(v))
                     {
                         continue;
                     }
