@@ -203,11 +203,11 @@ public class EnemyScript : MonoBehaviour
                 
                 if (vel.x > 0)
                 {
-                    transform.localScale = new Vector3(1, 1, 1);
+                    f.spriteRenderer.transform.localScale = new Vector3(1, 1, 1);
                 }
                 if (vel.x < 0)
                 {
-                    transform.localScale = new Vector3(-1, 1, 1);
+                    f.spriteRenderer.transform.localScale = new Vector3(-1, 1, 1);
                 }
 
                 oldvel = vel;
