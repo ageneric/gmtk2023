@@ -23,11 +23,14 @@ public class Fighter : MonoBehaviour
     public bool active = true;
     public bool banned = false;
 
+    public int kills = 0;
+    public int deaths = 0;
+    public float damageDealt = 0;
+
     public GameObject visibleProfile;
     public SpriteRenderer spriteRenderer;
     EnemyScript enemy;
 
-    
 
     // Start is called before the first frame update
     void Start()
@@ -71,14 +74,20 @@ public class Fighter : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damage)
+    public float TakeDamage(float damage)
     {
-        if(active)
+        // Return the damage dealt
+        // TODO: Animate sprite upon taking damage.
+
+        if (active)
         {
             health -= damage;
+            return Mathf.Max(0, Mathf.Min(damage, damage + health));
         }
-        
-        // TODO: Animate sprite upon taking damage.
+        else
+        {
+            return 0f;
+        }
     }
 
     public void Ban()

@@ -65,6 +65,7 @@ public class Leaderboard : MonoBehaviour
         var timeSpan = TimeSpan.FromSeconds(timeSeconds);
         textFields[1].text = timeSpan.ToString(@"mm\:ss");
 
-        textFields[2].text = fighter.hacks.ToString();
+        textFields[2].text = "K:" + fighter.kills.ToString() + " D:" + fighter.deaths.ToString()
+            + " A:" + Mathf.Round(fighter.damageDealt).ToString();
     }
 }
