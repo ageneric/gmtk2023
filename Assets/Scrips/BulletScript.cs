@@ -60,6 +60,7 @@ public class BulletScript : MonoBehaviour
             if(f.health <= 0)
             {
                 Vector3 position = pf.gameObject.transform.position;
+                if (kl == null) { kl = GameObject.Find("StaticScripts").GetComponent<KillLog>(); }
                 kl.addKill(pf, f, position);
                 pf.kills += 1;
                 f.deaths += 1;
