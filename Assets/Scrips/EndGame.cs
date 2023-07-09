@@ -9,6 +9,8 @@ public class EndGame : MonoBehaviour
     public List<string> hackers = new List<string>();
     public void initEndgame()
     {
+        EndGameInfo.finalBanned = bannedUsers;
+        EndGameInfo.finalHacks = hackers;
         SceneManager.LoadScene("EndGame");
     }
 }

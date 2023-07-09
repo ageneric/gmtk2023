@@ -36,7 +36,7 @@ public class Spawner : MonoBehaviour
         width = spawnArea.size[0];
         usernamelist = usernames.Split(";").ToList<string>();
         CreateFighterGroup();
-        
+        e.hackers = hackerUserNames;
     }
 
     // Update is called once per frame
@@ -60,7 +60,7 @@ public class Spawner : MonoBehaviour
         {
             CreateFighter(fighterIsHacker[i]);
         }
-        e.hackers = hackerUserNames;
+        
         for(int i=0;i<UnityEngine.Random.Range(hackerUserNames.Count*2,hackerUserNames.Count*3+2);i++)
         {
             Report r = new Report();

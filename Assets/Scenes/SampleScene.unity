@@ -1180,6 +1180,7 @@ MonoBehaviour:
   spawnCount: 7
   reportPanel: {fileID: 721027684}
   reportText: {fileID: 930552738}
+  e: {fileID: 1393610408}
   spawnPoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -4841,7 +4842,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1576738389}
   m_Direction: 2
   m_Value: -0.00000005086263
-  m_Size: 0.020408163
+  m_Size: 0.018805206
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4896,6 +4897,7 @@ GameObject:
   - component: {fileID: 1393610405}
   - component: {fileID: 1393610406}
   - component: {fileID: 1393610407}
+  - component: {fileID: 1393610408}
   m_Layer: 0
   m_Name: StaticScripts
   m_TagString: Untagged
@@ -4966,6 +4968,20 @@ MonoBehaviour:
   recordText: {fileID: 3764196294229179080, guid: f15fc1411ec437442a7aed490adc8db9, type: 3}
   postGameRecordText: {fileID: 4251064757550036587, guid: 3304fb7c60e631b43b99b85f4ed76887, type: 3}
   bannedItemColor: {r: 1, g: 0.5, b: 0.5, a: 0.5}
+--- !u!114 &1393610408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1393610403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98d77fb29a47f8d48900b8f1fbcacb0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bannedUsers: []
+  hackers: []
 --- !u!1 &1429362741
 GameObject:
   m_ObjectHideFlags: 0
@@ -5375,7 +5391,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1467046055}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1393610408}
+        m_TargetAssemblyTypeName: EndGame, Assembly-CSharp
+        m_MethodName: initEndgame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1467046055
 MonoBehaviour:
   m_ObjectHideFlags: 0

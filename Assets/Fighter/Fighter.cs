@@ -31,12 +31,13 @@ public class Fighter : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     Spawner s;
     EnemyScript enemy;
-
+    EndGame e;
 
     // Start is called before the first frame update
     void Start()
     {
         s = GameObject.Find("FighterSpawnZone").GetComponent<Spawner>();
+        e = GameObject.Find("StaticScripts").GetComponent<EndGame>();
         enemy = GetComponent<EnemyScript>();
         health = maxHealth;
         timeSurvived = 0;
@@ -106,6 +107,7 @@ public class Fighter : MonoBehaviour
         // Ban this fighter.
         banned = true;
         Knockout();
+        e.bannedUsers.Add(username);
     }
 
     public void Knockout()
