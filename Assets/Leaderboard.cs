@@ -82,14 +82,16 @@ public class Leaderboard : MonoBehaviour
 
     public void AddLeaderboardRecord(Fighter fighter, bool postGame)
     {
-        var obj = Instantiate(recordText);
+        GameObject obj;
         if (postGame)
         {
+            obj = Instantiate(postGameRecordText);
             obj.transform.SetParent(postGameRecordContainer);
             finalRecords.Add(obj.GetComponent<RecordButton>());
         }
         else
         {
+            obj = Instantiate(recordText);
             obj.transform.SetParent(recordContainer);
             liveRecords.Add(obj.GetComponent<RecordButton>());
         }
