@@ -42,12 +42,12 @@ public class BulletScript : MonoBehaviour
     {
         if (collision.collider.tag == "Wall")
         {
-            Instantiate(psExpire, parent.transform.position, Quaternion.identity);
+            // Instantiate(psExpire, parent.transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
         else if(collision.collider.tag == "Player")
         {
-            Instantiate(psExpire, parent.transform.position, Quaternion.identity);
+            // Instantiate(psExpire, parent.transform.position, Quaternion.identity);
             Fighter f = collision.gameObject.GetComponent<Fighter>();
             Fighter pf = parent.GetComponent<Fighter>();
             if (f == pf || f == null || pf == null)

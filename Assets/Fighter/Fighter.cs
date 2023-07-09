@@ -59,8 +59,12 @@ public class Fighter : MonoBehaviour
                     collider.gameObject.GetComponent<Fighter>().Ban();
                 }
 
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit2D hit = Physics2D.Raycast(ray);
+                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10)), Vector2.zero);
+
+                if (hit.collider != null)
+                {
+                    Debug.Log("Target Position: " + hit.collider.gameObject.transform.position);
+                }
                 Debug.Log(hit);
                 Debug.Log(hit.collider);
             }
