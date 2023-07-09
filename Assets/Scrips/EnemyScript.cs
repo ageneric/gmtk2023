@@ -6,10 +6,13 @@ public class EnemyScript : MonoBehaviour
 {
 
     public List<Transform> waypoints = new List<Transform>();
+    SpriteRenderer sr;
     public Transform target;
+    Animator anim;
     Vector2 chosenPos;
     Vector2 chosenPosDelta;
     Vector2 oldvel;
+    Vector3 oldpos;
     List<Vector2> blacklistedDirns = new List<Vector2>();
     public Vector3 startPos;
     public int command = 0;
@@ -37,6 +40,9 @@ public class EnemyScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        sr = GetComponentInChildren<SpriteRenderer>();
+        oldpos = transform.position;
+        anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         f = GetComponent<Fighter>();
         foreach(GameObject g in GameObject.FindGameObjectsWithTag("Waypoint"))
@@ -62,6 +68,9 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        float delta = (oldpos - transform.position).magnitude;
+        anim.SetFloat("mvmt", delta);
+        oldpos = transform.position;
         if(!isHacking)
         {
             confidence += confidencegain * (f.maxHealth / f.health);
@@ -147,6 +156,14 @@ public class EnemyScript : MonoBehaviour
                     blacklistedDirns.Clear();
                 }
                 rb.velocity = vel.normalized * (f.hacks.Contains("SPEED") && isHacking ? f.speed * speedMultiplier : f.speed);
+                if(vel.x < 0)
+                {
+                    sr.flipX = true;
+                }
+                else
+                {
+                    sr.flipX = false;
+                }
                 oldvel = vel;
                 break;
             case 2:
