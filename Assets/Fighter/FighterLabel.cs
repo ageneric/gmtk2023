@@ -29,6 +29,6 @@ public class FighterLabel : MonoBehaviour
         }
 
         float healthBarScale = Mathf.Clamp01(fighter.health / fighter.maxHealth);
-        healthBarFill.localScale = new Vector3(healthBarScale * 2f, 0.0625f, 1f);
+        healthBarFill.localScale = new Vector3(healthBarScale, 1f, 1f);
     }
 }
