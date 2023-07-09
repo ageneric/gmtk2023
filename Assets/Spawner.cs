@@ -129,7 +129,9 @@ public class Spawner : MonoBehaviour
         //Old spawn code commented out for (possibly temp) FFA code
         /**Vector2 position = new Vector2(transform.position.x + width * ((float)i / (float)spawnCount) - width/2f,
                                        transform.position.y);**/
-        Vector2 position = spawnPoints[Random.Range(0,spawnPoints.Length)].position;
+        int randindex = Random.Range(0, spawnPoints.Length);
+        Debug.Log(randindex);
+        Vector2 position = spawnPoints[randindex].position;
         GameObject gameObjectFighter = Instantiate(prefabFighter, position, Quaternion.identity);
         Fighter newFighter = gameObjectFighter.GetComponent<Fighter>();
         int usernameindex = Random.Range(0, usernamelist.Count);

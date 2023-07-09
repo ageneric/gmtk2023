@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
@@ -45,10 +46,11 @@ public class EnemyScript : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         f = GetComponent<Fighter>();
-        foreach(GameObject g in GameObject.FindGameObjectsWithTag("Waypoint"))
+        waypoints = GameObject.Find("FighterSpawnerZone").GetComponent<Spawner>().spawnPoints.ToList();
+        /**foreach(GameObject g in GameObject.FindGameObjectsWithTag("Waypoint"))
         {
             waypoints.Add(g.transform);
-        }
+        }**/
         
     }
 
