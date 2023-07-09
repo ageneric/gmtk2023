@@ -157,7 +157,7 @@ public class EnemyScript : MonoBehaviour
                             StartCoroutine(lookCooldown());
                             break;
                         }
-                        if (distance.magnitude < 0.01f)
+                        if (distance.magnitude < 0.5f)
                         {
                             transform.position = new Vector3(chosenPos.x, chosenPos.y, 0);
                             isLooking = false;
@@ -183,14 +183,9 @@ public class EnemyScript : MonoBehaviour
                     blacklistedDirns.Clear();
                 }
                 rb.velocity = vel.normalized * (f.hacks.Contains("SPEED") && isHacking ? f.speed * speedMultiplier : f.speed);
-                if(vel.x < 0)
-                {
-                    sr.flipX = true;
-                }
-                else
-                {
-                    sr.flipX = false;
-                }
+                
+                sr.flipX = vel.x < 0;
+
                 oldvel = vel;
                 break;
             case 2:
