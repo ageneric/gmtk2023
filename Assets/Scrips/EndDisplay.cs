@@ -41,5 +41,6 @@ public class EndDisplay : MonoBehaviour
     public void toMenu()
     {
         SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1f;
     }
 }
