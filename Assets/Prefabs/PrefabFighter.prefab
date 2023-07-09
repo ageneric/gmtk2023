@@ -217,7 +217,7 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   command: 0
   awareness: 20
-  minClearance: 2
+  minClearance: 2.5
   visionRange: 200
   combatRange: 20
   maxBloom: 0.25
