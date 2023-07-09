@@ -53,7 +53,7 @@ public class BulletScript : MonoBehaviour
             if (f == pf || f == null || pf == null)
             {
                 Debug.Log("Projectile ignored collision: " + f.ToString() + " " + pf.ToString());
-                Destroy(gameObject);
+                // Destroy(gameObject);
                 return;
             }
             pf.damageDealt += f.TakeDamage(25*(pf.hacks.Contains("DMG") && parent.isHacking? 4 : 1)*(f.hacks.Contains("IMMUN") && parent.isHacking ? 0 : 1));
