@@ -143,10 +143,8 @@ public class EnemyScript : MonoBehaviour
                         continue;
                     }
                     RaycastHit2D hit = Physics2D.Raycast(transform.position, v, visionRange);
-                    if (hit.collider == null && !speedSelect)
+                    if (hit.collider == null)
                     {
-                        vel = v;
-                        speedSelect = true;
                     }else{
                         
                         if ((hit.collider.tag == "Player") && hit.distance < combatRange && isLooking && hit.transform.GetComponent<Fighter>().active == true && hit.collider.gameObject != gameObject)
