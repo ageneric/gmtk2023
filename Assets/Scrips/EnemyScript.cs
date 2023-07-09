@@ -7,6 +7,7 @@ public class EnemyScript : MonoBehaviour
 {
 
     public List<Transform> waypoints = new List<Transform>();
+    public AudioSource[] audiosrc;
     SpriteRenderer sr;
     public Transform target;
     Animator anim;
@@ -41,6 +42,7 @@ public class EnemyScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audiosrc = GetComponents<AudioSource>();
         sr = GetComponentInChildren<SpriteRenderer>();
         oldpos = transform.position;
         anim = GetComponentInChildren<Animator>();
@@ -214,6 +216,7 @@ public class EnemyScript : MonoBehaviour
                     theta += UnityEngine.Random.Range(-bloom, bloom);
                     Vector2 bulletdirn = new Vector2(Mathf.Cos(theta), Mathf.Sin(theta));
                     var obj = Instantiate(bullet, transform.position + new Vector3(bulletdirn.x, bulletdirn.y, 0), Quaternion.Euler(0,0,theta*Mathf.Rad2Deg));
+                    audiosrc[0].Play();
                     if(f.hacks.Contains("XRAY") && isHacking)
                     {
                         obj.layer = LayerMask.NameToLayer("XRayBullet");
