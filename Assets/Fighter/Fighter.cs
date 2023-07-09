@@ -134,6 +134,7 @@ public class Fighter : MonoBehaviour
         {
             yield return new WaitForSeconds(1.75f);
             transform.position = enemy.waypoints[UnityEngine.Random.Range(0,enemy.waypoints.Count)].position;
+            enemy.chosenPos = transform.position;
             enemy.command = 0;
             visibleProfile.SetActive(true);
             health = maxHealth;

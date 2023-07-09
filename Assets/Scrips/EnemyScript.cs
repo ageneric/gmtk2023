@@ -9,7 +9,7 @@ public class EnemyScript : MonoBehaviour
     SpriteRenderer sr;
     public Transform target;
     Animator anim;
-    Vector2 chosenPos;
+    public Vector2 chosenPos;
     Vector2 chosenPosDelta;
     Vector2 oldvel;
     Vector3 oldpos;
@@ -97,7 +97,33 @@ public class EnemyScript : MonoBehaviour
                     
                     isLooking = true;
                     StartCoroutine(lookCooldown());
-                    int chosenPoint = UnityEngine.Random.Range(0, waypoints.Count);
+                    int chosenPoint=0;
+                    for (int j = 0;j < waypoints.Count;j++) {
+                        Vector3 v3 = chosenPos;
+                        if(v3 == waypoints[j].position)
+                        {
+                            if (j == 2)
+                            {
+                                chosenPoint = 1;
+                            }
+                            else if(j ==3)
+                            {
+                                chosenPoint = 6;
+                            }else if(j == 18)
+                            {
+                                chosenPoint = 17;
+                            }
+                            else if(j == 19)
+                            {
+                                chosenPoint = 20;
+                            }
+                            else
+                            {
+                                chosenPoint = UnityEngine.Random.Range(0, waypoints.Count);
+                            }
+                        }
+                    }
+                    
                     chosenPos = waypoints[chosenPoint].position;
                 }
                 Vector2 distance = chosenPos - new Vector2(transform.position.x, transform.position.y);
