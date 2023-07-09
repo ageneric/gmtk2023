@@ -20,6 +20,8 @@ public class Spawner : MonoBehaviour
     List<string> hackerUserNames = new List<string>();
     public string[] possiblehacks;
     public List<Report> reports;
+    public List<float> delays;
+    float maxTime = 300;
     // Start is called before the first frame update
     void Start()
     {
@@ -68,6 +70,16 @@ public class Spawner : MonoBehaviour
             } while (a == r.accusee);
             r.accusor = a;
             reports.Add(r);
+        }
+
+        for(int i=0;i<reports.Count;i++)
+        {
+            float offset = 0;
+            if (i == 0)
+            {
+                offset = 10;
+            }
+            delays.Add(UnityEngine.Random.Range(0, maxTime / (reports.Count + 1)) + offset);
         }
 
         Shuffle.shuffle(reports);
