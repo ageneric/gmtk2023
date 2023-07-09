@@ -2016,7 +2016,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 15
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -5408,8 +5408,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1576738390}
   m_HandleRect: {fileID: 1576738389}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.020390226
+  m_Value: -0.00000010172526
+  m_Size: 0.018157983
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6145,7 +6145,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 9600}
+  m_AnchoredPosition: {x: 0, y: 9600.001}
   m_SizeDelta: {x: 0, y: 9800}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1566117892
