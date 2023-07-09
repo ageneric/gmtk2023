@@ -6,22 +6,24 @@ public class FighterWeapon : MonoBehaviour
 {
     public Sprite[] weaponSprites;
     public enum Weapon {Pistol, Rifle, SawnOff, Shotgun, SMG, Sniper};
-
-    public Weapon weapon = Weapon.Pistol;
     public SpriteRenderer heldWeaponSprite;
+    private Fighter fighter;
 
-    public void Start()
+    public static float[] damage =    { 1,  1,  1,  1,  1,  1 };
+    public static float[] bulletSpd = { 1,  1,  1,  1,  1,  1 };
+    public static float[] clipSize =  { 1,  1,  1,  1,  1,  1 };
+    public static float[] reload =    { 1,  1,  1,  1,  1,  1 };
+    public static float[] spread =    { 1,  1,  1,  1,  1,  1 };
+
+    // Start is called before the first frame update
+    void Start()
     {
-        heldWeaponSprite.sprite = weaponSprites[(int)weapon];
+        fighter = gameObject.GetComponent<Fighter>();
+        // heldWeaponSprite.sprite = weaponSprites[(int)fighter.weapon];
     }
 
     public void Shoot()
     {
-
+        // public FighterWeapon.Weapon weapon = FighterWeapon.Weapon.Pistol;
     }
-}
-
-public class Rifle
-{
-
 }

@@ -18,6 +18,7 @@ public class Leaderboard : MonoBehaviour
     public GameObject recordText;
     public GameObject postGameRecordText;
     public Color bannedItemColor = new Color(1f, 0.5f, 0.5f, 0.5f);
+    public bool gameEnded = false;
 
     // Start is called before the first frame update
     void Start()
@@ -38,20 +39,24 @@ public class Leaderboard : MonoBehaviour
             }
         }
 
-        if (playersRemaining == 0)
+        if (!gameEnded)
         {
-            EndGame();
-        }
-        else
-        {
-            for (int i=0; i<fighters.Count; i++)
+            if (playersRemaining == 0)
             {
-                Fighter fighter = fighters[i];
-                RecordButton record = liveRecords[i];
-                record.eventLocation = fighter.transform.position;
+                EndGame();
+                gameEnded = true;
+            }
+            else
+            {
+                for (int i = 0; i < fighters.Count; i++)
+                {
+                    Fighter fighter = fighters[i];
+                    RecordButton record = liveRecords[i];
+                    record.eventLocation = fighter.transform.position;
 
-                UpdateFields(record.gameObject, fighter, false);
-                Sort(liveRecords);
+                    UpdateFields(record.gameObject, fighter, false);
+                    Sort(liveRecords);
+                }
             }
         }
     }
@@ -65,8 +70,8 @@ public class Leaderboard : MonoBehaviour
         {
             fighter.active = false;
             AddLeaderboardRecord(fighter, true);
-            Sort(finalRecords);
         }
+        Sort(finalRecords);
     }
 
     public void RegisterFighter(Fighter newFighter)
@@ -113,7 +118,7 @@ public class Leaderboard : MonoBehaviour
 
         if (postGame)
         {
-            textFields[4].text = string.Join(", ", fighter.hacks);
+            try { textFields[4].text = string.Join(", ", fighter.hacks); } catch { }
         }
     }
 

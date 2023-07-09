@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3423266958532471473
 SpriteRenderer:
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 1622004755, guid: 1161a0f53839b7d4798dc97c3bd56290, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -163,3 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
   kl: {fileID: 0}
+  bulletDmg: 0
+  bulletSpd: 0
+  psMove: {fileID: 1983680849622522581, guid: 45a2d6d16a1da4a40bd61aa3966cd60c, type: 3}
+  psExpire: {fileID: 1983680849622522581, guid: 45a2d6d16a1da4a40bd61aa3966cd60c, type: 3}

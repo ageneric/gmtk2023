@@ -129,7 +129,7 @@ public class Spawner : MonoBehaviour
         //Old spawn code commented out for (possibly temp) FFA code
         /**Vector2 position = new Vector2(transform.position.x + width * ((float)i / (float)spawnCount) - width/2f,
                                        transform.position.y);**/
-        Vector2 position = spawnPoints[UnityEngine.Random.Range(0,spawnPoints.Length)].position;
+        Vector2 position = spawnPoints[Random.Range(0,spawnPoints.Length)].position;
         GameObject gameObjectFighter = Instantiate(prefabFighter, position, Quaternion.identity);
         Fighter newFighter = gameObjectFighter.GetComponent<Fighter>();
         int usernameindex = Random.Range(0, usernamelist.Count);
@@ -140,6 +140,13 @@ public class Spawner : MonoBehaviour
         usernamesInPlay.Add(newFighter.username);
         usernamelist.RemoveAt(usernameindex);
         gameObjectFighter.name = "Fighter " + newFighter.username + "_" + Random.Range(0, 9999).ToString("0000");
+
+        // This adds name colors!
+        Color c = Color.HSVToRGB(Random.Range(0f, 1f), 0.45f, 1);
+        string hexcode = Mathf.RoundToInt(c.r * 255).ToString("X2") + Mathf.RoundToInt(c.g * 255).ToString("X2")
+            + Mathf.RoundToInt(c.r * 255).ToString("X2");
+
+        newFighter.username = "<color=#" + hexcode + ">" + newFighter.username + "</color>";
 
         if (fighterIsHacker)
         {

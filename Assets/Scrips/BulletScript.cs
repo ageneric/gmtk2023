@@ -7,19 +7,46 @@ public class BulletScript : MonoBehaviour
     public EnemyScript parent;
     public KillLog kl;
     public float bulletDmg;
+    public float bulletSpd;
+    // public ParticleSystem move;
+    // public ParticleSystem expire;
+    public GameObject psMove;
+    public GameObject psExpire;
+
+    private float flightTimeAnimation = 0f;
+    private float lifeTime = 0f;
+
     // Start is called before the first frame update
     private void Start()
     {
         kl = GameObject.Find("StaticScripts").GetComponent<KillLog>();
     }
+
+    private void Update()
+    {
+        flightTimeAnimation += Time.deltaTime;
+        lifeTime += Time.deltaTime;
+        if (flightTimeAnimation > 0.25f)
+        {
+            // Instantiate(psMove, parent.transform.position, Quaternion.identity);
+        }
+        if (lifeTime > 10f)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.tag == "Wall")
         {
+            Instantiate(psExpire, parent.transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
         else if(collision.collider.tag == "Player")
         {
+            Instantiate(psExpire, parent.transform.position, Quaternion.identity);
             Fighter f = collision.gameObject.GetComponent<Fighter>();
             Fighter pf = parent.GetComponent<Fighter>();
             if (f == pf || f == null || pf == null)

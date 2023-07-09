@@ -283,7 +283,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9b20c47af10ebec439293db6dea6550b, type: 3}
   - {fileID: 21300000, guid: 4b8fd25bcafeb1245a9fea5c5d2e608c, type: 3}
   - {fileID: 21300000, guid: 1aae2261d6df1434abd8495f9f6088f9, type: 3}
-  weapon: 0
   heldWeaponSprite: {fileID: 3524764976564579127}
 --- !u!1 &2312307340263193298
 GameObject:
@@ -645,7 +644,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5722484297488472669}
-  m_Text: username
+  m_Text: "<color=#ffffff>username\\u2690\u2690</color>\u2690\u2690\u2690"
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
