@@ -228,13 +228,14 @@ MonoBehaviour:
   maxBloom: 0.25
   speedMultiplier: 2
   fireRateMultiplier: 3
-  combatTime: 5
-  movementTime: 15
+  combatTime: 1
+  movementTime: 9
   confidence: 0
   confidencegain: 0.2
   isLooking: 0
   isWaiting: 0
   isHacking: 0
+  rb: {fileID: 0}
   bullet: {fileID: 8931437159775477925, guid: 95ac5c3a528e70f428aa4f8e6aca794e, type: 3}
   bulletSpeed: 25
 --- !u!50 &6592166392665314061

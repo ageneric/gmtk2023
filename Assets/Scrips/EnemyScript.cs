@@ -157,7 +157,7 @@ public class EnemyScript : MonoBehaviour
                             StartCoroutine(lookCooldown());
                             break;
                         }
-                        if (distance.magnitude < 0.5f)
+                        if (distance.magnitude < 0.02f)
                         {
                             //transform.position = new Vector3(chosenPos.x, chosenPos.y, 0);
                             isLooking = false;
@@ -206,7 +206,7 @@ public class EnemyScript : MonoBehaviour
                     float bloom = (f.hacks.Contains("AMBT") && isHacking ? 0 : maxBloom);
                     theta += UnityEngine.Random.Range(-bloom, bloom);
                     Vector2 bulletdirn = new Vector2(Mathf.Cos(theta), Mathf.Sin(theta));
-                    var obj = Instantiate(bullet, transform.position + new Vector3(bulletdirn.x, bulletdirn.y, 0), Quaternion.identity);
+                    var obj = Instantiate(bullet, transform.position + new Vector3(bulletdirn.x, bulletdirn.y, 0), Quaternion.Euler(0,0,theta*Mathf.Rad2Deg));
                     if(f.hacks.Contains("XRAY") && isHacking)
                     {
                         obj.layer = LayerMask.NameToLayer("XRayBullet");
@@ -237,7 +237,6 @@ public class EnemyScript : MonoBehaviour
     IEnumerator waitCooldown()
     {
         yield return new WaitForSeconds(combatTime);
-        command = 0;
         isWaiting = false;
     }
 
