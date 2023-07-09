@@ -10,7 +10,12 @@ public class EndDisplay : MonoBehaviour
     public TMP_Text endLog;
 
     // Start is called before the first frame update
-    void Start()
+    void O()
+    {
+        
+    }
+
+    private void OnEnable()
     {
         Debug.Log(EndGameInfo.finalHacks.ToSeparatedString(","));
         Debug.Log(EndGameInfo.finalBanned.ToSeparatedString(","));
@@ -18,9 +23,9 @@ public class EndDisplay : MonoBehaviour
         int i = 0;
         int j = 0;
 
-        foreach(string s in EndGameInfo.finalBanned)
+        foreach (string s in EndGameInfo.finalBanned)
         {
-            if(EndGameInfo.finalHacks.Contains(s))
+            if (EndGameInfo.finalHacks.Contains(s))
             {
                 i++;
             }
@@ -29,9 +34,8 @@ public class EndDisplay : MonoBehaviour
                 j++;
             }
         }
-
-        endLog.text = "You banned: " + EndGameInfo.finalBanned.ToSeparatedString(",") + "\n\nThe hackers were: "+ EndGameInfo.finalHacks.ToSeparatedString(",")+"\n\n"
-            +"Hackers reported: "+i.ToString()+"\n\nInnocents reported: "+j.ToString()+"\n\nTime Taken: "+EndGameInfo.timeTaken+"\n\nFinal Score: ";
+        int score = i * 1000 - j * 500 - EndGameInfo.timeTaken * 3;
+        endLog.text = "Hackers Caught: " + i + "\nInnocents Banned: " + j + "\nTotal Score: " + score;
     }
 
     public void toMenu()

@@ -6,7 +6,7 @@ using TMPro;
 public class Timer : MonoBehaviour {
 
     private float TargetTime;
-    private int TimeRn = 0;
+    public int TimeRn = 0;
     public EndGame eg;
 
     [SerializeField] 
