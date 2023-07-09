@@ -39,8 +39,8 @@ public class Fighter : MonoBehaviour
     void Start()
     {
         anim = GetComponentInChildren<Animator>();
-        s = GameObject.Find("FighterSpawnZone").GetComponent<Spawner>();
-        e = GameObject.Find("StaticScripts").GetComponent<EndGame>();
+        try { s = GameObject.Find("FighterSpawnZone").GetComponent<Spawner>(); } catch { }
+        try { e = GameObject.Find("StaticScripts").GetComponent<EndGame>(); } catch { }
         enemy = GetComponent<EnemyScript>();
         health = maxHealth;
         timeSurvived = 0;
