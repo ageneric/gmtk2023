@@ -33,7 +33,7 @@ public class BulletScript : MonoBehaviour
         }*/
         if (lifeTime > 100f)
         {
-            Destroy(gameObject);
+            // Destroy(gameObject);
         }
     }
 
