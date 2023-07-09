@@ -20,7 +20,7 @@ public class Spawner : MonoBehaviour
     private float width;
     public Transform[] spawnPoints;
     public GameObject spawnPointHolder;
-    string usernames = "snap;get;melodic;opening;tshirt;supporter;loan;simply;enchant;scold;axel;argent;illiterate;power;landscape;grand;dug;translate;shrug;everyday;sport;obey;maker;miniature;mussels;perpetual;told;wool;sarong;petticoat;feliz;swim;achoo;reserved;neither;serpentine;culottes;nucleus;level;coal;seagull;sales;evening;insidious;pelt;key;disgusted;thelegend;tank;heroic;pixel";
+    string usernames = "snap;get;melodic;opening;tshirt;supporter;loan;simply;enchant;scold;axel;argent;illiterate;power;landscape;grand;dug;translate;shrug;everyday;sport;obey;maker;miniature;mussels;perpetual;told;wool;sarong;petticoat;feliz;swim;achoo;reserved;neither;serpent;culottes;nucleus;level;coal;seagull;sales;evening;insidious;pelt;key;disgusted;thelegend;tank;heroic;pixel";
     List<string> usernamelist;
     List<string> usernamesInPlay = new List<string>();
     List<string> hackerUserNames = new List<string>();

@@ -62,17 +62,15 @@ public class Fighter : MonoBehaviour
                 Collider2D collider = Physics2D.OverlapPoint(clickPos);
                 if (collider != null && collider.gameObject.tag == "Player" && collider.name == name)
                 {
-                    collider.gameObject.GetComponent<Fighter>().Ban();
+                    if (EventSystem.current.IsPointerOverGameObject())
+                    {
+                        Debug.Log("ES over game object");
+                    }
+                    else
+                    {
+                        collider.gameObject.GetComponent<Fighter>().Ban();
+                    }
                 }
-
-                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10)), Vector2.zero);
-
-                if (hit.collider != null)
-                {
-                    Debug.Log("Target Position: " + hit.collider.gameObject.transform.position);
-                }
-                Debug.Log(hit);
-                Debug.Log(hit.collider);
             }
 
             // Death
