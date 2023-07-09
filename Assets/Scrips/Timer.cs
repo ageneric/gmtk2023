@@ -20,7 +20,7 @@ public class Timer : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         if (TimeRn < Time.time + 1) {
-            _title.text = "" + (TargetTime - TimeRn);
+            _title.text = "" + Mathf.Floor(TargetTime - TimeRn);
             TimeRn += 1;
         }
         
