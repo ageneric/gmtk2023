@@ -101,6 +101,7 @@ public class Fighter : MonoBehaviour
     {
         // Kill this fighter and start the respawn timer.
         active = false;
+        timeSurvived = 0;
         StartCoroutine(respawn());
     }
 

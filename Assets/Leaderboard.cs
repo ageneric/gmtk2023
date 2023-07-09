@@ -37,6 +37,17 @@ public class Leaderboard : MonoBehaviour
         {
             EndGame();
         }
+        else
+        {
+            for (int i=0; i<fighters.Count; i++)
+            {
+                Fighter fighter = fighters[i];
+                RecordButton record = records[i];
+                record.eventLocation = fighter.transform.position;
+
+                UpdateTextFields(record.gameObject, fighter);
+            }
+        }
     }
 
     public void EndGame()
@@ -55,9 +66,13 @@ public class Leaderboard : MonoBehaviour
     {
         var obj = Instantiate(recordText);
         obj.transform.SetParent(recordContainer);
-
+        records.Add(obj.GetComponent<RecordButton>());
         obj.GetComponent<RecordButton>().eventLocation = fighter.transform.position;
+        UpdateTextFields(obj, fighter);
+    }
 
+    public void UpdateTextFields(GameObject obj, Fighter fighter)
+    {
         TMP_Text[] textFields = obj.GetComponentsInChildren<TMP_Text>();
         textFields[0].text = fighter.username;
 
