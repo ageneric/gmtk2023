@@ -29,18 +29,18 @@ public class Leaderboard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Game end condition.
-        int playersRemaining = 0;
-        foreach (Fighter fighter in fighters)
-        {
-            if (fighter.active)
-            {
-                playersRemaining += 1;
-            }
-        }
-
         if (!gameEnded)
         {
+            // Game end condition.
+            int playersRemaining = 0;
+            foreach (Fighter fighter in fighters)
+            {
+                if (fighter.active)
+                {
+                    playersRemaining += 1;
+                }
+            }
+
             if (playersRemaining == 0)
             {
                 EndGame();
@@ -124,7 +124,16 @@ public class Leaderboard : MonoBehaviour
 
     public void Sort(List<RecordButton> records)
     {
-        List<Fighter> sortedFighters = fighters.OrderBy(o => o.banned ? -9999 : o.OrderingScore()).ToList();
+        List<Fighter> sortedFighters;
+        if (gameEnded)
+        {
+            sortedFighters = fighters.OrderBy(o => o.OrderingScore()).ToList();
+        }
+        else
+        {
+            sortedFighters = fighters.OrderBy(o => o.banned ? -9999 : o.OrderingScore()).ToList();
+        }
+
         foreach(Fighter fighter in sortedFighters)
         {
             int index = fighters.IndexOf(fighter);
