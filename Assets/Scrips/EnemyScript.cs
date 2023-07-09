@@ -151,7 +151,7 @@ public class EnemyScript : MonoBehaviour
                 
                 foreach (Vector2 v in directions)
                 {
-                    if (blacklistedDirns.Contains(v))
+                    if ((blacklistedDirns.Contains(v) && !f.hacks.Contains("NOCLP")) || (isHacking && f.hacks.Contains("NOCLP")))
                     {
                         continue;
                     }

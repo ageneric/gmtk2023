@@ -24,7 +24,7 @@ public class Timer : MonoBehaviour {
             _title.text = "" + Mathf.Floor(TargetTime - TimeRn);
             TimeRn += 1;
         }
-        if(Time.time == TargetTime)
+        if(Time.time >= TargetTime)
         {
             eg.initEndgame();
         }
