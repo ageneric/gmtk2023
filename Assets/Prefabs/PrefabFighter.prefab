@@ -218,6 +218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints: []
   target: {fileID: 0}
+  chosenPos: {x: 0, y: 0}
   startPos: {x: 0, y: 0, z: 0}
   command: 0
   awareness: 20
@@ -283,7 +284,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4b8fd25bcafeb1245a9fea5c5d2e608c, type: 3}
   - {fileID: 21300000, guid: 1aae2261d6df1434abd8495f9f6088f9, type: 3}
   weapon: 0
-  heldWeaponSprite: {fileID: 0}
+  heldWeaponSprite: {fileID: 3524764976564579127}
 --- !u!1 &2312307340263193298
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,7 +296,7 @@ GameObject:
   - component: {fileID: 2090875599602123881}
   - component: {fileID: 3524764976564579127}
   m_Layer: 0
-  m_Name: Rifle
+  m_Name: WeaponHeld
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
