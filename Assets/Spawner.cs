@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
+using TMPro;
 
 public class Spawner : MonoBehaviour
 {
@@ -10,6 +11,11 @@ public class Spawner : MonoBehaviour
     public GameObject prefabFighter;
     public Leaderboard leaderboard;
     public int spawnCount = 1;
+
+    public GameObject reportPanel;
+    public TMP_Text reportText;
+
+    public EndGame e;
 
     private float width;
     public Transform[] spawnPoints;
@@ -26,9 +32,11 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         spawnPoints = spawnPointHolder.GetComponentsInChildren<Transform>();
+        reportPanel.SetActive(false);
         width = spawnArea.size[0];
         usernamelist = usernames.Split(";").ToList<string>();
         CreateFighterGroup();
+        
     }
 
     // Update is called once per frame
@@ -52,6 +60,7 @@ public class Spawner : MonoBehaviour
         {
             CreateFighter(fighterIsHacker[i]);
         }
+        e.hackers = hackerUserNames;
         for(int i=0;i<UnityEngine.Random.Range(hackerUserNames.Count*2,hackerUserNames.Count*3+2);i++)
         {
             Report r = new Report();
@@ -72,6 +81,8 @@ public class Spawner : MonoBehaviour
             reports.Add(r);
         }
 
+
+
         for(int i=0;i<reports.Count;i++)
         {
             float offset = 0;
@@ -88,9 +99,30 @@ public class Spawner : MonoBehaviour
         {
             Debug.Log(r.accusor + " reported " + r.accusee + ": " + r.flavour);
         }
+
+        StartCoroutine(ReportCycle());
     }
 
-    
+    IEnumerator ReportCycle()
+    {
+        yield return new WaitForSeconds(delays[0]);
+        if(reports.Count > 0)
+        {
+            reportText.text = reports[0].accusor + " reported " + reports[0].accusee + ",\n\n" + "\"" + reports[0].flavour + "\"";
+            reportPanel.SetActive(true);
+            if (delays.Count > 0)
+            {
+                delays.RemoveAt(0);
+                reports.RemoveAt(0);
+                StartCoroutine(ReportCycle());
+            }
+        }
+    }
+
+    public void hideReport()
+    {
+        reportPanel.SetActive(false);
+    }
 
     public void CreateFighter(bool fighterIsHacker)
     {

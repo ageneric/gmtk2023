@@ -29,12 +29,14 @@ public class Fighter : MonoBehaviour
 
     public GameObject visibleProfile;
     public SpriteRenderer spriteRenderer;
+    Spawner s;
     EnemyScript enemy;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        s = GameObject.Find("FighterSpawnZone").GetComponent<Spawner>();
         enemy = GetComponent<EnemyScript>();
         health = maxHealth;
         timeSurvived = 0;
@@ -92,6 +94,15 @@ public class Fighter : MonoBehaviour
 
     public void Ban()
     {
+        List<Report> newReports = new List<Report>();
+        foreach(Report r in s.reports)
+        {
+            if(username != r.accusor && username != r.accusee)
+            {
+                newReports.Add(r);
+            }
+        }
+        s.reports = newReports;
         // Ban this fighter.
         banned = true;
         Knockout();
