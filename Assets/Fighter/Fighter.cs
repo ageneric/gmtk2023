@@ -64,7 +64,7 @@ public class Fighter : MonoBehaviour
                 {
                     if (EventSystem.current.IsPointerOverGameObject())
                     {
-                        Debug.Log("ES over game object");
+                        
                     }
                     else
                     {
