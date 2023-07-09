@@ -17,8 +17,9 @@ public class MenuScript : MonoBehaviour
     }
     public void showTutorial()
     {
-        menu.SetActive(false);
-        tutorial.SetActive(true);
+        SceneManager.LoadScene("TutorialScene");
+        // menu.SetActive(false);
+        // tutorial.SetActive(true);
     }
 
     public void hideTutorial()
@@ -42,5 +43,10 @@ public class MenuScript : MonoBehaviour
     public void PlayGame()
     {
         SceneManager.LoadScene("SampleScene");
+    }
+
+    public void EndTutorial()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }
